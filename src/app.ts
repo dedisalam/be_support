@@ -8,14 +8,16 @@ import morgan from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
-import DB from '@databases';
-import { Routes } from '@interfaces/routes.interface';
-import errorMiddleware from '@middlewares/error.middleware';
-import { logger, stream } from '@utils/logger';
+import { logger, stream } from '@utils';
+import { Routes } from '@interfaces';
+import { ADMIN } from '@databases';
+import { errorMiddleware } from '@middlewares';
 
 class App {
   public app: express.Application;
+
   public env: string;
+
   public port: string | number;
 
   constructor(routes: Routes[]) {
@@ -43,8 +45,9 @@ class App {
     return this.app;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private connectToDatabase() {
-    DB.sequelize.sync({ force: false });
+    ADMIN.sequelize.sync({ force: false });
   }
 
   private initializeMiddlewares() {

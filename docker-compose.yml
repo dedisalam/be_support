@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: be_support
     image: dedisalam/be_support
+    ports:
+      - '3000:3000'
     restart: 'unless-stopped'
     networks:
       - backend

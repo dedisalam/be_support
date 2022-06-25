@@ -1,12 +1,12 @@
 import { hash } from 'bcrypt';
-import DB from '@databases';
-import { CreateUserDto } from '@dtos/users.dto';
-import { HttpException } from '@exceptions/HttpException';
-import { User } from '@interfaces/users.interface';
-import { isEmpty } from '@utils/util';
+import { ADMIN } from '@databases';
+import { User } from '@interfaces';
+import { HttpException } from '@exceptions';
+import { CreateUserDto } from '@dtos';
+import { isEmpty } from '@utils';
 
 class UserService {
-  public users = DB.Users;
+  public users = ADMIN.Users;
 
   public async findAllUser(): Promise<User[]> {
     const allUser: User[] = await this.users.findAll();

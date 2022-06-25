@@ -1,15 +1,14 @@
 import { compare, hash } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { SECRET_KEY } from '@config';
-import DB from '@databases';
-import { CreateUserDto } from '@dtos/users.dto';
-import { HttpException } from '@exceptions/HttpException';
-import { DataStoredInToken, TokenData } from '@interfaces/auth.interface';
-import { User } from '@interfaces/users.interface';
-import { isEmpty } from '@utils/util';
+import { ADMIN } from '@databases';
+import { DataStoredInToken, TokenData, User } from '@interfaces';
+import { CreateUserDto } from '@dtos';
+import { HttpException } from '@exceptions';
+import { isEmpty } from '@utils';
 
 class AuthService {
-  public users = DB.Users;
+  public users = ADMIN.Users;
 
   public async signup(userData: CreateUserDto): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
@@ -47,6 +46,7 @@ class AuthService {
     return findUser;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public createToken(user: User): TokenData {
     const dataStoredInToken: DataStoredInToken = { id: user.id };
     const secretKey: string = SECRET_KEY;
@@ -55,6 +55,7 @@ class AuthService {
     return { expiresIn, token: sign(dataStoredInToken, secretKey, { expiresIn }) };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public createCookie(tokenData: TokenData): string {
     return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
   }

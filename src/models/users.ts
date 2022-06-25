@@ -1,25 +1,18 @@
+/* eslint-disable func-names */
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
-import { User } from '@interfaces/users.interface';
+import { User } from '@interfaces';
 
-export type UserCreationAttributes = Optional<User, 'id' | 'email' | 'password'>;
+export type UserCreationAttributes = Optional<User, 'email' | 'password'>;
 
 export class UserModel extends Model<User, UserCreationAttributes> implements User {
-  public id: number;
   public email: string;
-  public password: string;
 
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  public password: string;
 }
 
 export default function (sequelize: Sequelize): typeof UserModel {
   UserModel.init(
     {
-      id: {
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER,
-      },
       email: {
         allowNull: false,
         type: DataTypes.STRING(45),
@@ -31,6 +24,8 @@ export default function (sequelize: Sequelize): typeof UserModel {
     },
     {
       tableName: 'users',
+      createdAt: false,
+      updatedAt: false,
       sequelize,
     },
   );
