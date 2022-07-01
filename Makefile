@@ -1,6 +1,6 @@
 all:
 	npm run build && \
-	docker image prune && \
+	docker system prune && \
 	docker-compose up -d --build
 
 dev:

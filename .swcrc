@@ -20,18 +20,17 @@
     },
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"],
       "@config": ["config"],
       "@controllers/*": ["controllers/*"],
       "@databases": ["databases"],
-      "@dtos/*": ["dtos/*"],
-      "@exceptions/*": ["exceptions/*"],
+      "@dtos": ["dtos"],
+      "@exceptions": ["exceptions"],
       "@interfaces/*": ["interfaces/*"],
-      "@middlewares/*": ["middlewares/*"],
+      "@middlewares": ["middlewares"],
       "@models/*": ["models/*"],
-      "@routes/*": ["routes/*"],
+      "@routes": ["routes"],
       "@services/*": ["services/*"],
-      "@utils/*": ["utils/*"]
+      "@utils": ["utils"]
     }
   },
   "module": {

@@ -1,4 +1,5 @@
 import Routes from './routes';
 
-export * from './usersInterface';
+export * from './admin/user';
+export * from './region';
 export { Routes };

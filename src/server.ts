@@ -1,17 +1,12 @@
-// import { AuthRoute, DashboardRoute, UsersRoute } from '@routes';
-// import { validateEnv } from '@utils';
-// import App from './app';
-
-// validateEnv();
-
-// const app = new App([new DashboardRoute(), new UsersRoute(), new AuthRoute()]);
-// app.listen();
-
 import express from 'express';
-import routes from '@routes';
-import { logger } from './utils';
+import https from 'https';
+import { readFileSync } from 'fs';
+import routes from './routes';
+import { logger, validateEnv } from './utils';
 import { NODE_ENV, PORT } from './config';
-import { connectToDatabase, initializeMiddlewares, initializeSwagger } from './init';
+import { connectToDatabase, initializeErrorHandling, initializeMiddlewares, initializeSwagger } from './init';
+
+validateEnv();
 
 const app = express();
 
@@ -19,15 +14,19 @@ connectToDatabase();
 initializeMiddlewares(app);
 routes(app);
 initializeSwagger(app);
-// initializeErrorHandling();
+initializeErrorHandling(app);
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World');
-// });
-
-app.listen(PORT, () => {
-  logger.info(`=================================`);
-  logger.info(`======= ENV: ${NODE_ENV} ========`);
-  logger.info(`🚀 App listening on the port ${PORT}`);
-  logger.info(`=================================`);
-});
+https
+  .createServer(
+    {
+      key: readFileSync('./backend.key'),
+      cert: readFileSync('./backend.crt'),
+    },
+    app,
+  )
+  .listen(PORT || 3000, () => {
+    logger.info(`=================================`);
+    logger.info(`======= ENV: ${NODE_ENV} ========`);
+    logger.info(`🚀 App listening on the port ${PORT}`);
+    logger.info(`=================================`);
+  });

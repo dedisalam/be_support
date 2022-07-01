@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
 import ADMIN from './admin';
+import REGION from './region';
 
-export { ADMIN };
+export { ADMIN, REGION };

@@ -6,11 +6,16 @@ import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import { stream } from '../utils';
-import { LOG_FORMAT, ORIGIN, CREDENTIALS } from '../config';
+import { LOG_FORMAT, CREDENTIALS, ORIGIN } from '../config';
+
+const corsOptions = {
+  origin: ORIGIN,
+  credentials: CREDENTIALS,
+};
 
 const initializeMiddlewares = app => {
   app.use(morgan(LOG_FORMAT, { stream }));
-  app.use(cors({ origin: ORIGIN, credentials: CREDENTIALS }));
+  app.use(cors(corsOptions));
   app.use(hpp());
   app.use(helmet());
   app.use(compression());

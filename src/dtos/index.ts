@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
 import CreateUserDto from './users';
 
 export { CreateUserDto };
+export * from './regions';
