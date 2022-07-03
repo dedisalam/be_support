@@ -1,28 +1,27 @@
 import { Router } from 'express';
-import CitiesRoute, { CityDoc } from './city';
-import CountryRoute, { CountryDoc } from './country';
-import ProvincesRoute, { ProvinceDoc } from './province';
-import SubDistrictsRoute, { SubDistrictDoc } from './subDistrict';
-import VillagesRoute, { VillageDoc } from './village';
+import Cities, { Doc as CD } from './city';
+import Country, { Doc as COD } from './country';
+import Provinces, { Doc as PD } from './province';
+import SubDistricts, { Doc as SD } from './subDistrict';
+import Villages, { Doc as VD } from './village';
 
-const RegionRoute = Router();
+const Region = Router();
 const path = '/region';
 
-export const RegionDoc = p => {
+export const Doc = p => {
   return {
-    ...CountryDoc(`${p}${path}`),
-    ...ProvinceDoc(`${p}${path}`),
-    ...CityDoc(`${p}${path}`),
-    ...SubDistrictDoc(`${p}${path}`),
-    ...VillageDoc(`${p}${path}`),
+    ...CD(`${p}${path}`),
+    ...COD(`${p}${path}`),
+    ...PD(`${p}${path}`),
+    ...SD(`${p}${path}`),
+    ...VD(`${p}${path}`),
   };
 };
 
-// Nested
-RegionRoute.use(path, CountryRoute);
-RegionRoute.use(path, ProvincesRoute);
-RegionRoute.use(path, CitiesRoute);
-RegionRoute.use(path, SubDistrictsRoute);
-RegionRoute.use(path, VillagesRoute);
+Region.use(path, Country);
+Region.use(path, Provinces);
+Region.use(path, Cities);
+Region.use(path, SubDistricts);
+Region.use(path, Villages);
 
-export default RegionRoute;
+export default Region;

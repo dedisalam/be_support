@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { getGroups } from '@controllers/public/mikrotik';
 import { authMiddleware } from '@middlewares';
 
-const GroupRoute = Router();
+const Group = Router();
 const path = '/group';
 
-export const GroupDoc = p => {
+export const Doc = p => {
   return {
     [`${p}${path}s`]: {
       get: {
@@ -18,6 +18,6 @@ export const GroupDoc = p => {
 };
 
 // Read
-GroupRoute.get(`${path}s`, authMiddleware, getGroups);
+Group.get(`${path}s`, authMiddleware, getGroups);
 
-export default GroupRoute;
+export default Group;

@@ -2,7 +2,7 @@ import { NextFunction, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { SECRET_KEY } from '@config';
 import { ADMIN } from '@databases';
-import { DataStoredInToken, RequestWithUser } from '@interfaces';
+import { DataStoredInToken, RequestWithUser } from '@interfaces/admin';
 
 const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
   try {
@@ -12,7 +12,7 @@ const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFun
       const secretKey: string = SECRET_KEY;
       const verificationResponse = verify(Authorization, secretKey) as DataStoredInToken;
       const userId = verificationResponse.id;
-      const findUser = await ADMIN.Users.findByPk(userId);
+      const findUser = await ADMIN.User.findByPk(userId);
 
       if (findUser) {
         req.user = findUser;

@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { getCities } from '@controllers/public/region';
 import { authMiddleware } from '@middlewares';
 
-const CityRoute = Router();
+const City = Router();
 // const path = '/city';
 
-export const CityDoc = p => {
+export const Doc = p => {
   return {
     [`${p}/cities/{id}`]: {
       get: {
@@ -19,6 +19,6 @@ export const CityDoc = p => {
 };
 
 // Read
-CityRoute.get(`/cities/:id`, authMiddleware, getCities);
+City.get(`/cities/:id`, authMiddleware, getCities);
 
-export default CityRoute;
+export default City;

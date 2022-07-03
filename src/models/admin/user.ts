@@ -14,6 +14,12 @@ export class UserClass extends Model<UI, UserCreationAttributes> implements UI {
 function User(sequelize: Sequelize): typeof UserClass {
   UserClass.init(
     {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
       email: {
         allowNull: false,
         type: DataTypes.STRING(45),

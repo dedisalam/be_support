@@ -13,9 +13,10 @@ const getGroups = async () => {
     const categories = sidebar.getElementsByClassName('categories')[0];
     const result = categories
       .getElementsByTagName('a')
-      .map(a => {
+      .map((a, index) => {
         const link = a.getAttribute('href').replace('/products/group/', '');
         return {
+          id: index,
           title: a.innerHTML,
           links: `/public/mikrotik/products/${link}`,
         };

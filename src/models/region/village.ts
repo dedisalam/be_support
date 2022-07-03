@@ -22,7 +22,7 @@ export default function Village(sequelize: Sequelize): typeof VillageClass {
       },
     },
     {
-      tableName: 'kelurahan',
+      tableName: 'village',
       createdAt: false,
       updatedAt: false,
       sequelize,

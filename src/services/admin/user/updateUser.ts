@@ -2,7 +2,7 @@ import { hash } from 'bcrypt';
 import { User } from '@interfaces/admin';
 import { isEmpty } from '@utils';
 import { ADMIN } from '@databases';
-import { CreateUserDto } from '@dtos';
+import { CreateUserDto } from '@dtos/admin';
 import { HttpException } from '@exceptions';
 
 const updateUser = async (userId: number, userData: CreateUserDto): Promise<User> => {

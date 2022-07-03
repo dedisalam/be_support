@@ -1,11 +1,14 @@
-import AdminRoute from './admin';
-import PublicsRoute, { PublicDoc } from './public';
+import { authMiddleware } from '@middlewares';
+import Admin from './admin';
+import Customer, { Doc as CD } from './customer';
+import Public, { Doc as PD } from './public';
 
 export const doc = {
   info: { title: 'REST API', version: '1.0.0', description: 'Example docs' },
   swagger: '2.0',
   paths: {
-    ...PublicDoc(),
+    ...PD(),
+    ...CD(),
     schemes: { '0': 'https' },
   },
   definitions: {},
@@ -19,8 +22,12 @@ export const doc = {
 };
 
 const routes = app => {
-  app.use(AdminRoute);
-  app.use(PublicsRoute);
+  app.use(Admin);
+  app.use(Public);
+  app.use(Customer);
+  app.get('/', authMiddleware, (req, res) => {
+    res.sendStatus(200);
+  });
 };
 
 export default routes;

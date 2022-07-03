@@ -1,18 +1,18 @@
 import { Router } from 'express';
-import MikrotikRoute, { MikrotikDoc } from './mikrotik';
-import RegionRoute, { RegionDoc } from './region';
+import Mikrotik, { Doc as MD } from './mikrotik';
+import Region, { Doc as RD } from './region';
 
-const PublicRoute = Router();
+const Public = Router();
 const path = '/public';
 
-export const PublicDoc = () => {
+export const Doc = () => {
   return {
-    ...RegionDoc(`${path}`),
-    ...MikrotikDoc(`${path}`),
+    ...MD(`${path}`),
+    ...RD(`${path}`),
   };
 };
 
-PublicRoute.use(path, RegionRoute);
-PublicRoute.use(path, MikrotikRoute);
+Public.use(path, Mikrotik);
+Public.use(path, Region);
 
-export default PublicRoute;
+export default Public;

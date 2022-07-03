@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { getProvinces } from '@controllers/public/region';
 import { authMiddleware } from '@middlewares';
 
-const ProvinceRoute = Router();
+const Province = Router();
 const path = '/province';
 
-export const ProvinceDoc = p => {
+export const Doc = p => {
   return {
     [`${p}${path}s`]: {
       get: {
@@ -18,6 +18,6 @@ export const ProvinceDoc = p => {
 };
 
 // Read
-ProvinceRoute.get(`${path}s`, authMiddleware, getProvinces);
+Province.get(`${path}s`, authMiddleware, getProvinces);
 
-export default ProvinceRoute;
+export default Province;

@@ -1,4 +1,5 @@
 import ADMIN from './admin';
+import CUSTOMER from './customer';
 import REGION from './region';
 
-export { ADMIN, REGION };
+export { ADMIN, CUSTOMER, REGION };

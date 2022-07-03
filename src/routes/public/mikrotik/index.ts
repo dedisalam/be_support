@@ -1,18 +1,18 @@
 import { Router } from 'express';
-import GroupRoute, { GroupDoc } from './group';
-import ProductRoute, { ProductDoc } from './product';
+import Group, { Doc as GD } from './group';
+import Product, { Doc as PD } from './product';
 
-const MikrotikRoute = Router();
+const Mikrotik = Router();
 const path = '/mikrotik';
 
-export const MikrotikDoc = p => {
+export const Doc = p => {
   return {
-    ...GroupDoc(`${p}${path}`),
-    ...ProductDoc(`${p}${path}`),
+    ...GD(`${p}${path}`),
+    ...PD(`${p}${path}`),
   };
 };
 
-MikrotikRoute.use(path, GroupRoute);
-MikrotikRoute.use(path, ProductRoute);
+Mikrotik.use(path, Group);
+Mikrotik.use(path, Product);
 
-export default MikrotikRoute;
+export default Mikrotik;

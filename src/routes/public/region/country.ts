@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { getCountry } from '@controllers/public/region';
 import { authMiddleware } from '@middlewares';
 
-const CountryRoute = Router();
+const Country = Router();
 const path = '/country';
 
-export const CountryDoc = p => {
+export const Doc = p => {
   return {
     [`${p}${path}`]: {
       get: {
@@ -18,6 +18,6 @@ export const CountryDoc = p => {
 };
 
 // Read
-CountryRoute.get(`${path}`, authMiddleware, getCountry);
+Country.get(`${path}`, authMiddleware, getCountry);
 
-export default CountryRoute;
+export default Country;

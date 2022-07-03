@@ -24,7 +24,7 @@
       "@config": ["config"],
       "@controllers/*": ["controllers/*"],
       "@databases": ["databases"],
-      "@dtos": ["dtos"],
+      "@dtos/*": ["dtos/*"],
       "@exceptions": ["exceptions"],
       "@interfaces/*": ["interfaces/*"],
       "@middlewares": ["middlewares"],

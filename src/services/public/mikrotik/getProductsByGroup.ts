@@ -11,7 +11,7 @@ const getProductsByGroup = async group => {
     const body = dom.getElementsByTagName('body')[0];
     const productList = body.getElementsByClassName('productlist')[0];
 
-    const result = productList.getElementsByClassName('product').map(product => {
+    const result = productList.getElementsByClassName('product').map((product, index) => {
       const images = product.getElementsByClassName('product-img')[0].getElementsByTagName('img')[0].getAttribute('data-src');
       const descriptions = product.getElementsByClassName('product-description');
       let title = '';
@@ -22,12 +22,11 @@ const getProductsByGroup = async group => {
         title = desc
           .getElementsByTagName('h2')[0]
           .getElementsByTagName('a')[0]
-          .innerHTML.replace(/\t/g, '')
-          .replace(/\n/g, '')
-          .replace(/<[^>]*>NEW<[^>]*>/g, '');
-        description = desc.getElementsByTagName('p')[0].innerHTML.replace(/\t/g, '').replace(/\n/g, '').replace(/\r/g, '');
+          .innerHTML.replace(/<[^>]*>NEW<[^>]*>/g, '');
+        description = desc.getElementsByTagName('p')[0].innerHTML;
       });
       return {
+        id: index,
         title,
         description,
         images,

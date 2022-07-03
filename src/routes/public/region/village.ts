@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { getVillages } from '@controllers/public/region';
 import { authMiddleware } from '@middlewares';
 
-const VillageRoute = Router();
+const Village = Router();
 const path = '/village';
 
-export const VillageDoc = p => {
+export const Doc = p => {
   return {
     [`${p}${path}s/{id}`]: {
       get: {
@@ -19,6 +19,6 @@ export const VillageDoc = p => {
 };
 
 // Read
-VillageRoute.get(`${path}s/:id`, authMiddleware, getVillages);
+Village.get(`${path}s/:id`, authMiddleware, getVillages);
 
-export default VillageRoute;
+export default Village;

@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import UserRoute from './user';
+import User from './user';
 
-const AdminRoute = Router();
+const Admin = Router();
 const path = '/admin';
 
-AdminRoute.use(path, UserRoute);
+Admin.use(path, User);
 
-export default AdminRoute;
+export default Admin;

@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 import routes from './routes';
 import { logger, validateEnv } from './utils';
 import { NODE_ENV, PORT } from './config';
-import { connectToDatabase, initializeErrorHandling, initializeMiddlewares, initializeSwagger } from './init';
+import { connectToDatabase, initializeErrorHandling, initializeMiddlewares, initializeQuery, initializeSwagger } from './init';
 
 validateEnv();
 
@@ -15,12 +15,13 @@ initializeMiddlewares(app);
 routes(app);
 initializeSwagger(app);
 initializeErrorHandling(app);
+setTimeout(initializeQuery, 5000);
 
 https
   .createServer(
     {
-      key: readFileSync('./backend.key'),
-      cert: readFileSync('./backend.crt'),
+      key: readFileSync('./support.key'),
+      cert: readFileSync('./support.crt'),
     },
     app,
   )

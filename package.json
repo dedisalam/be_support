@@ -2,8 +2,8 @@
   "name": "be_support",
   "version": "0.0.0",
   "description": "Backend for internal server application",
-  "author": "",
-  "license": "ISC",
+  "author": "Dedi Salam Permana",
+  "license": "MIT",
   "scripts": {
     "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "start-prod": "NODE_ENV=production node dist/server.js",

@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { getSubDistricts } from '@controllers/public/region';
 import { authMiddleware } from '@middlewares';
 
-const SubDistrictRoute = Router();
+const SubDistrict = Router();
 const path = '/sub-district';
 
-export const SubDistrictDoc = p => {
+export const Doc = p => {
   return {
     [`${p}${path}s/{id}`]: {
       get: {
@@ -19,6 +19,6 @@ export const SubDistrictDoc = p => {
 };
 
 // Read
-SubDistrictRoute.get(`${path}s/:id`, authMiddleware, getSubDistricts);
+SubDistrict.get(`${path}s/:id`, authMiddleware, getSubDistricts);
 
-export default SubDistrictRoute;
+export default SubDistrict;
