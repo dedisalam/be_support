@@ -1,5 +1,6 @@
 import express from 'express';
 import https from 'https';
+import http from 'http';
 import { readFileSync } from 'fs';
 import routes from './routes';
 import { logger, validateEnv } from './utils';
@@ -17,17 +18,26 @@ initializeSwagger(app);
 initializeErrorHandling(app);
 setTimeout(initializeQuery, 5000);
 
-https
-  .createServer(
-    {
-      key: readFileSync('./support.key'),
-      cert: readFileSync('./support.crt'),
-    },
-    app,
-  )
-  .listen(PORT || 3000, () => {
-    logger.info(`=================================`);
-    logger.info(`======= ENV: ${NODE_ENV} ========`);
-    logger.info(`🚀 App listening on the port ${PORT}`);
-    logger.info(`=================================`);
-  });
+const httpsOption = {
+  key: readFileSync('./support.key'),
+  cert: readFileSync('./support.crt'),
+};
+
+const logsHttp = () => {
+  logger.info(`=================================`);
+  logger.info(`==============HTTP===============`);
+  logger.info(`======= ENV: ${NODE_ENV} ========`);
+  logger.info(`🚀 App listening on the port 4000`);
+  logger.info(`=================================`);
+};
+
+const logsHttps = () => {
+  logger.info(`=================================`);
+  logger.info(`==============HTTPS==============`);
+  logger.info(`======= ENV: ${NODE_ENV} ========`);
+  logger.info(`🚀 App listening on the port ${PORT}`);
+  logger.info(`=================================`);
+};
+
+http.createServer(app).listen(4000, logsHttp);
+https.createServer(httpsOption, app).listen(PORT, logsHttps);
