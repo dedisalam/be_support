@@ -1,6 +1,4 @@
-import CreateCategoryDto from './category';
-import CreatePicDto from './pic';
-import CreateProfileDto from './profile';
-import CreateServiceDto from './service';
+/* eslint-disable import/prefer-default-export */
+import Customer from './customer';
 
-export { CreateCategoryDto, CreatePicDto, CreateProfileDto, CreateServiceDto };
+export { Customer };

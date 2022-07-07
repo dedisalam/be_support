@@ -1,7 +1,7 @@
-import getCustomers from './getCustomers';
+import Create from './create';
+import Delete from './delete';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { getCustomers };
-export * from './category';
-export * from './pic';
-export * from './profile';
-export * from './service';
+export { Create, Delete, Read, ReadById, Update };

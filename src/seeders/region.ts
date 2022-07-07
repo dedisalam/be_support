@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 import { logger } from '@utils';
-import { createKecamatanService, createKelurahanService, createKotaKabService, createNegaraService, createProvinsiService } from '@services';
+import { createSubDistrict createVillage createCity createCountry createProvince } from '@services';
 
 function Region() {
   setTimeout(async () => {
@@ -20,7 +20,7 @@ function Region() {
       return null;
     };
 
-    const Provinsi = {
+    const Province = {
       data: [
         { id: 12, nama: 'SUMATERA UTARA' },
         { id: 31, nama: 'DKI JAKARTA' },
@@ -28,23 +28,23 @@ function Region() {
       ],
     };
     try {
-      await createNegaraService({ id: 360, name: 'INDONESIA' });
-      // const Provinsi = await getData('provinsi', 0);
-      Provinsi.data.forEach(async prov => {
+      await createCountry({ id: 360, name: 'INDONESIA' });
+      // const Province = await getData('provinsi', 0);
+      Province.data.forEach(async prov => {
         try {
-          await createProvinsiService({ id: prov.id, name: prov.nama.toUpperCase(), NegaraId: 360 });
+          await createProvince({ id: prov.id, name: prov.nama.toUpperCase(), CountryId: 360 });
           const Kabupaten = await getData('kabupaten', prov.id);
           Kabupaten.data.forEach(async kab => {
             try {
-              await createKotaKabService({ id: kab.id, name: kab.nama.toUpperCase(), ProvinsiId: prov.id });
-              const Kecamatan = await getData('kecamatan', kab.id);
-              Kecamatan.data.forEach(async kec => {
+              await createCity({ id: kab.id, name: kab.nama.toUpperCase(), ProvinceId: prov.id });
+              const SubDistrict = await getData('kecamatan', kab.id);
+              SubDistrict.data.forEach(async kec => {
                 try {
-                  await createKecamatanService({ id: kec.id, name: kec.nama.toUpperCase(), KotaKabId: kab.id });
-                  const Kelurahan = await getData('kelurahan', kec.id);
-                  Kelurahan.data.forEach(async kel => {
+                  await createSubDistrict({ id: kec.id, name: kec.nama.toUpperCase(), CityId: kab.id });
+                  const Village = await getData('kelurahan', kec.id);
+                  Village.data.forEach(async kel => {
                     try {
-                      await createKelurahanService({ id: kel.id, name: kel.nama.toUpperCase(), KecamatanId: kec.id });
+                      await createVillage({ id: kel.id, name: kel.nama.toUpperCase(), SubDistrictId: kec.id });
                       //   console.log(`${kel.nama}, ${kec.nama}, ${kab.nama}, ${prov.nama}`);
                     } catch (error) {
                       console.log(error);

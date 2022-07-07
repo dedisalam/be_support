@@ -1,5 +1,7 @@
-import createProfile from './createProfile';
-import findAllProfile from './findAllProfile';
-import findProfileById from './findProfileById';
+import Create from './create';
+import Delete from './delete';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { createProfile, findAllProfile, findProfileById };
+export { Create, Delete, Read, ReadById, Update };

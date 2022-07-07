@@ -1,12 +1,11 @@
-import createCookie from './createCookie';
-import createToken from './createToken';
-import createUser from './createUser';
-import deleteUser from './deleteUser';
-import getUsers from './getUsers';
-import getUserById from './getUserById';
-import login from './login';
-import logout from './logout';
-import signup from './signup';
-import updateUser from './updateUser';
+import Create from './create';
+import CreateCookie from './createCookie';
+import CreateToken from './createToken';
+import Delete from './delete';
+import Login from './login';
+import Logout from './logout';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { createCookie, createToken, createUser, deleteUser, getUsers, getUserById, login, logout, signup, updateUser };
+export { Create, CreateCookie, CreateToken, Delete, Login, Logout, Read, ReadById, Update };

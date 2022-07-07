@@ -1,24 +1,24 @@
 import { Router } from 'express';
-import { createUser, deleteUser, getUserById, getUsers, logIn, logOut, updateUser } from '@controllers/admin/user';
+import { Create, Delete, ReadById, Read, Login, Logout, Update } from '@controllers/admin/user';
 import { authMiddleware, validationMiddleware } from '@middlewares';
-import { CreateUserDto as CD } from '@dtos/admin';
+import { User as UD } from '@dtos/admin/user';
 
 const User = Router();
 const path = '/user';
 
 // Create
-User.post(`${path}`, authMiddleware, validationMiddleware(CD, 'body'), createUser);
-User.post(`${path}/login`, validationMiddleware(CD, 'body'), logIn);
+User.post(`${path}`, authMiddleware, validationMiddleware(UD, 'body'), Create);
+User.post(`${path}/login`, validationMiddleware(UD, 'body'), Login);
 
 // Read
-User.get(`${path}s`, authMiddleware, getUsers);
-User.get(`${path}/:id(\\d+)`, authMiddleware, getUserById);
+User.get(`${path}s`, authMiddleware, Read);
+User.get(`${path}/:id(\\d+)`, authMiddleware, ReadById);
 
 // Update
-User.put(`${path}/:id(\\d+)`, authMiddleware, validationMiddleware(CD, 'body', true), updateUser);
+User.put(`${path}/:id(\\d+)`, authMiddleware, validationMiddleware(UD, 'body', true), Update);
 
 // Delete
-User.delete(`${path}/:id(\\d+)`, authMiddleware, deleteUser);
-User.post(`${path}/logout`, authMiddleware, logOut);
+User.delete(`${path}/:id(\\d+)`, authMiddleware, Delete);
+User.post(`${path}/logout`, authMiddleware, Logout);
 
 export default User;

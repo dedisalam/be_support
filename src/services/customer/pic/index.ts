@@ -1,5 +1,7 @@
-import createPic from './createPic';
-import findAllPic from './findAllPic';
-import findPicById from './findPicById';
+import Create from './create';
+import Delete from './delete';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { createPic, findAllPic, findPicById };
+export { Create, Delete, Read, ReadById, Update };

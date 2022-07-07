@@ -1,9 +1,9 @@
-import createUser from './createUser';
-import deleteUser from './deleteUser';
-import getUserById from './getUserById';
-import getUsers from './getUsers';
-import logIn from './logIn';
-import logOut from './logOut';
-import updateUser from './updateUser';
+import Create from './create';
+import Delete from './delete';
+import Login from './login';
+import Logout from './logout';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { createUser, deleteUser, getUserById, getUsers, logIn, logOut, updateUser };
+export { Create, Delete, Login, Logout, Read, ReadById, Update };

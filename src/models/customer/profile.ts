@@ -4,6 +4,8 @@ import { Profile as PI } from '@interfaces/customer';
 export type ProfileCreationAttributes = Optional<PI, 'name' | 'address' | 'telp' | 'hp' | 'fax'>;
 
 export class ProfileClass extends Model<PI, ProfileCreationAttributes> implements PI {
+  public id: number;
+
   public name: string;
 
   public address: string;
@@ -18,6 +20,12 @@ export class ProfileClass extends Model<PI, ProfileCreationAttributes> implement
 function Profile(sequelize: Sequelize): typeof ProfileClass {
   ProfileClass.init(
     {
+      id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       name: {
         allowNull: false,
         type: DataTypes.STRING(255),

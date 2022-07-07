@@ -1,7 +1,7 @@
-import CreateKecamatanDto from './kecamatan';
-import CreateKelurahanDto from './kelurahan';
-import CreateKotaKabDto from './kotaKab';
-import CreateNegaraDto from './negara';
-import CreateProvinsiDto from './provinsi';
+import SubDistrict from './subDistrict';
+import Village from './village';
+import City from './city';
+import Country from './country';
+import Province from './province';
 
-export { CreateKecamatanDto, CreateKelurahanDto, CreateKotaKabDto, CreateNegaraDto, CreateProvinsiDto };
+export { SubDistrict, Village, City, Country, Province };

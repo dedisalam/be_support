@@ -4,3 +4,12 @@
 ###
 # Get Customers
 GET {{ baseURL }}/customers
+
+###
+# Create Customers
+POST {{ baseURL }}/customer
+Content-Type: application/json
+
+{
+    "name": "testing"
+}

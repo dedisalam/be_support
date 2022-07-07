@@ -1,7 +1,7 @@
-import deleteCategory from './deleteCategory';
-import getCategories from './getCategories';
-import getCategory from './getCategory';
-import postCategory from './postCategory';
-import putCategory from './putCategory';
+import Delete from './delete';
+import Read from './read';
+import ReadById from './readById';
+import Create from './create';
+import Update from './update';
 
-export { deleteCategory, getCategories, getCategory, postCategory, putCategory };
+export { Delete, Read, ReadById, Create, Update };

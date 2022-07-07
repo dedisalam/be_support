@@ -1,7 +1,7 @@
-import createKecamatanService from './createKecamatan';
-import createKelurahanService from './createKelurahan';
-import createKotaKabService from './createKotaKab';
-import createNegaraService from './createNegara';
-import createProvinsiService from './createProvinsi';
+import createSubDistrict from './createSubDistrict';
+import createVillage from './createVillage';
+import createCity from './createCity';
+import createCountry from './createCountry';
+import createProvince from './createProvince';
 
-export { createKecamatanService, createKelurahanService, createKotaKabService, createNegaraService, createProvinsiService };
+export { createSubDistrict createVillage createCity createCountry createProvince };

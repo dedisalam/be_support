@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { NODE_ENV, DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } from '@config';
 import { logger } from '@utils';
-import { Category, Pic, Profile, Service } from '@models/customer';
+import { Category, Customer, Pic, Profile, Service } from '@models/customer';
 
 const DB_CUSTOMER = `${DB_DATABASE}_customer`;
 
@@ -31,6 +31,7 @@ sequelize.authenticate();
 
 const CUSTOMER = {
   Category: Category(sequelize),
+  Customer: Customer(sequelize),
   Profile: Profile(sequelize),
   Pic: Pic(sequelize),
   Service: Service(sequelize),

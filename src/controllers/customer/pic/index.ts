@@ -1,7 +1,7 @@
-import deletePic from './deletePic';
-import getPic from './getPic';
-import getPics from './getPics';
-import postPic from './postPic';
-import putPic from './putPic';
+import Create from './create';
+import Delete from './delete';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { deletePic, getPics, getPic, postPic, putPic };
+export { Create, Delete, Read, ReadById, Update };

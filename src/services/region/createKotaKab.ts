@@ -1,17 +1,17 @@
-import { CreateKotaKabDto } from '@dtos';
-import { REGIONS } from '@databases';
+import { CreateCity } from '@dtos';
+import { REGION } from '@databases';
 import { HttpException } from '@exceptions';
-import { KotaKabInterface } from '@interfaces';
+import { City } from '@interfaces';
 import { isEmpty } from '@utils';
 
-const createKotaKab = async (kotaKabData: CreateKotaKabDto): Promise<KotaKabInterface> => {
+const createCity = async (kotaKabData: CreateCity): Promise<City> => {
   if (isEmpty(kotaKabData)) throw new HttpException(400, "You're not userData");
 
-  const findKotaKab: KotaKabInterface = await REGIONS.KotaKab.findOne({ where: { name: kotaKabData.name } });
-  if (findKotaKab) throw new HttpException(409, `data ${kotaKabData.name} already exists`);
+  const findCity: City = await REGION.City.findOne({ where: { name: kotaKabData.name } });
+  if (findCity) throw new HttpException(409, `data ${kotaKabData.name} already exists`);
 
-  const createKotaKabData: KotaKabInterface = await REGIONS.KotaKab.create(kotaKabData);
-  return createKotaKabData;
+  const createCityData: City = await REGION.City.create(kotaKabData);
+  return createCityData;
 };
 
-export default createKotaKab;
+export default createCity;

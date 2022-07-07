@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
-import { Category as CI } from '@interfaces/customer';
+import { Category as CI } from '@interfaces/customer/category';
 
 export type CategoryCreationAttributes = Optional<CI, 'name'>;
 

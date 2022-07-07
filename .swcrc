@@ -29,6 +29,7 @@
       "@middlewares": ["middlewares"],
       "@models/*": ["models/*"],
       "@routes": ["routes"],
+      "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
       "@utils": ["utils"]
     }

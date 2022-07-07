@@ -4,12 +4,20 @@ import { Pic as PI } from '@interfaces/customer';
 export type PicCreationAttributes = Optional<PI, 'name'>;
 
 export class PicClass extends Model<PI, PicCreationAttributes> implements PI {
+  public id: number;
+
   public name: string;
 }
 
 function Pic(sequelize: Sequelize): typeof PicClass {
   PicClass.init(
     {
+      id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       name: {
         allowNull: false,
         type: DataTypes.STRING(255),

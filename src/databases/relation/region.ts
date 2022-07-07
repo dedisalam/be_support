@@ -1,6 +1,6 @@
 import REGION from '../region';
 
-// Relasi Kecamatan - Kelurahan
+// Relasi SubDistrict - Village
 REGION.SubDistrict.hasMany(REGION.Village, {
   foreignKey: {
     allowNull: false,
@@ -8,7 +8,7 @@ REGION.SubDistrict.hasMany(REGION.Village, {
 });
 REGION.Village.belongsTo(REGION.SubDistrict);
 
-// Relasi KotaKab - Kecamatan
+// Relasi City - SubDistrict
 REGION.City.hasMany(REGION.SubDistrict, {
   foreignKey: {
     allowNull: false,
@@ -16,7 +16,7 @@ REGION.City.hasMany(REGION.SubDistrict, {
 });
 REGION.SubDistrict.belongsTo(REGION.City);
 
-// Relasi Provinsi - KotaKab
+// Relasi Province - City
 REGION.Province.hasMany(REGION.City, {
   foreignKey: {
     allowNull: false,
@@ -24,7 +24,7 @@ REGION.Province.hasMany(REGION.City, {
 });
 REGION.City.belongsTo(REGION.Province);
 
-// Relasi Negara - Provinsi
+// Relasi Country - Province
 REGION.Country.hasMany(REGION.Province, {
   foreignKey: {
     allowNull: false,

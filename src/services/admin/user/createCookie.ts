@@ -1,11 +1,11 @@
-import { TokenData } from '@interfaces/admin';
+import { Token } from '@interfaces/admin/user';
 
-const createCookie = (res, tokenData: TokenData) => {
-  res.cookie('Authorization', tokenData.token, {
+const CreateCookie = (res, token: Token) => {
+  res.cookie('Authorization', token.token, {
     secure: true,
     httpOnly: true,
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
   });
 };
 
-export default createCookie;
+export default CreateCookie;

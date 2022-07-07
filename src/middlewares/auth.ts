@@ -18,13 +18,13 @@ const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFun
         req.user = findUser;
         next();
       } else {
-        res.sendStatus(401);
+        res.status(401).json({ links: '/admin/user/login' });
       }
     } else {
-      res.sendStatus(401);
+      res.status(401).json({ links: '/admin/user/login' });
     }
   } catch (error) {
-    res.sendStatus(401);
+    res.status(401).json({ links: '/admin/user/login' });
   }
 };
 

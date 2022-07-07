@@ -27,7 +27,7 @@ const logsHttp = () => {
   logger.info(`=================================`);
   logger.info(`==============HTTP===============`);
   logger.info(`======= ENV: ${NODE_ENV} ========`);
-  logger.info(`🚀 App listening on the port 4000`);
+  logger.info(`🚀 App listening on the port ${Number(PORT) + 1}`);
   logger.info(`=================================`);
 };
 
@@ -39,5 +39,5 @@ const logsHttps = () => {
   logger.info(`=================================`);
 };
 
-http.createServer(app).listen(4000, logsHttp);
+http.createServer(app).listen(Number(PORT) + 1, logsHttp);
 https.createServer(httpsOption, app).listen(PORT, logsHttps);

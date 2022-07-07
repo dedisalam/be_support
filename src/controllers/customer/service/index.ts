@@ -1,7 +1,7 @@
-import deleteService from './deleteService';
-import getService from './getService';
-import getServices from './getServices';
-import postService from './postService';
-import putService from './putService';
+import Create from './create';
+import Delete from './delete';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { deleteService, getServices, getService, postService, putService };
+export { Create, Delete, Read, ReadById, Update };

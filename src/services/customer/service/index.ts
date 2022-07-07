@@ -1,5 +1,7 @@
-import createService from './createService';
-import findAllService from './findAllService';
-import findServiceById from './findServiceById';
+import Create from './create';
+import Delete from './delete';
+import Read from './read';
+import ReadById from './readById';
+import Update from './update';
 
-export { createService, findAllService, findServiceById };
+export { Create, Delete, Read, ReadById, Update };

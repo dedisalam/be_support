@@ -1,6 +1,4 @@
-import Category from './category';
-import Pic from './pic';
-import Profile from './profile';
-import Service from './service';
+/* eslint-disable import/prefer-default-export */
+import Customer from './customer';
 
-export { Category, Pic, Profile, Service };
+export { Customer };

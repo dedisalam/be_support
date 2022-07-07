@@ -1,9 +1,9 @@
-import { createUser } from '@services/admin/user';
+import { Create } from '@services/admin/user';
 import { logger } from '@utils';
 
 const initializeQuery = async () => {
   try {
-    await createUser({
+    await Create({
       email: 'root@email.com',
       password: 'j4l4w4v3!@#',
     });

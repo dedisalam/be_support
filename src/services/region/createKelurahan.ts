@@ -1,17 +1,17 @@
-import { CreateKelurahanDto } from '@dtos';
-import { REGIONS } from '@databases';
+import { CreateVillage } from '@dtos';
+import { REGION } from '@databases';
 import { HttpException } from '@exceptions';
-import { KelurahanInterface } from '@interfaces';
+import { Village } from '@interfaces';
 import { isEmpty } from '@utils';
 
-const createKelurahan = async (kelurahanData: CreateKelurahanDto): Promise<KelurahanInterface> => {
+const createVillage = async (kelurahanData: CreateVillage): Promise<Village> => {
   if (isEmpty(kelurahanData)) throw new HttpException(400, "You're not userData");
 
-  const findKelurahan: KelurahanInterface = await REGIONS.Kelurahan.findOne({ where: { name: kelurahanData.name } });
-  if (findKelurahan) throw new HttpException(409, `data ${kelurahanData.name} already exists`);
+  const findVillage: Village = await REGION.Village.findOne({ where: { name: kelurahanData.name } });
+  if (findVillage) throw new HttpException(409, `data ${kelurahanData.name} already exists`);
 
-  const createKelurahanData: KelurahanInterface = await REGIONS.Kelurahan.create({ ...kelurahanData });
-  return createKelurahanData;
+  const createVillageData: Village = await REGION.Village.create({ ...kelurahanData });
+  return createVillageData;
 };
 
-export default createKelurahan;
+export default createVillage;

@@ -1,9 +1,11 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { Service as SI } from '@interfaces/customer';
 
-export type ServiceCreationAttributes = Optional<SI, 'name' | 'cir' | 'desc'>;
+export type CreationAttributes = Optional<SI, 'name' | 'cir' | 'desc'>;
 
-export class ServiceClass extends Model<SI, ServiceCreationAttributes> implements SI {
+export class ServiceClass extends Model<SI, CreationAttributes> implements SI {
+  public id: number;
+
   public name: string;
 
   public cir: string;
@@ -14,6 +16,12 @@ export class ServiceClass extends Model<SI, ServiceCreationAttributes> implement
 function Service(sequelize: Sequelize): typeof ServiceClass {
   ServiceClass.init(
     {
+      id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       name: {
         allowNull: false,
         type: DataTypes.STRING(255),

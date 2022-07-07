@@ -1,17 +1,17 @@
-import { CreateNegaraDto } from '@dtos';
-import { REGIONS } from '@databases';
+import { CreateCountry } from '@dtos/regions';
+import { REGION } from '@databases';
 import { HttpException } from '@exceptions';
-import { NegaraInterface } from '@interfaces';
+import { Country } from '@interfaces/region';
 import { isEmpty } from '@utils';
 
-const createNegara = async (negaraData: CreateNegaraDto): Promise<NegaraInterface> => {
+const createCountry = async (negaraData: CreateCountry): Promise<Country> => {
   if (isEmpty(negaraData)) throw new HttpException(400, "You're not userData");
 
-  const findNegara: NegaraInterface = await REGIONS.Negara.findOne({ where: { name: negaraData.name } });
-  if (findNegara) throw new HttpException(409, `data ${negaraData.name} already exists`);
+  const findCountry: Country = await REGION.Country.findOne({ where: { name: negaraData.name } });
+  if (findCountry) throw new HttpException(409, `data ${negaraData.name} already exists`);
 
-  const createNegaraData: NegaraInterface = await REGIONS.Negara.create({ ...negaraData });
-  return createNegaraData;
+  const createCountryData: Country = await REGION.Country.create({ ...negaraData });
+  return createCountryData;
 };
 
-export default createNegara;
+export default createCountry;

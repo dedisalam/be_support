@@ -1,17 +1,17 @@
-import { CreateKecamatanDto } from '@dtos';
-import { REGIONS } from '@databases';
+import { CreateSubDistrict } from '@dtos';
+import { REGION } from '@databases';
 import { HttpException } from '@exceptions';
-import { KecamatanInterface } from '@interfaces';
+import { SubDistrict } from '@interfaces';
 import { isEmpty } from '@utils';
 
-const createKecamatan = async (kecamatanData: CreateKecamatanDto): Promise<KecamatanInterface> => {
+const createSubDistrict = async (kecamatanData: CreateSubDistrict): Promise<SubDistrict> => {
   if (isEmpty(kecamatanData)) throw new HttpException(400, "You're not userData");
 
-  const findKecamatan: KecamatanInterface = await REGIONS.Kecamatan.findOne({ where: { name: kecamatanData.name } });
-  if (findKecamatan) throw new HttpException(409, `data ${kecamatanData.name} already exists`);
+  const findSubDistrict: SubDistrict = await REGION.SubDistrict.findOne({ where: { name: kecamatanData.name } });
+  if (findSubDistrict) throw new HttpException(409, `data ${kecamatanData.name} already exists`);
 
-  const createKecamatanData: KecamatanInterface = await REGIONS.Kecamatan.create({ ...kecamatanData });
-  return createKecamatanData;
+  const createSubDistrictData: SubDistrict = await REGION.SubDistrict.create({ ...kecamatanData });
+  return createSubDistrictData;
 };
 
-export default createKecamatan;
+export default createSubDistrict;
