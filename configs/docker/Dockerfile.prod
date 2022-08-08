@@ -9,6 +9,6 @@ WORKDIR /app
 
 RUN npm install --production
 
-CMD ["node", "main.js"]
+CMD ["node", "main.min.js"]
 
 EXPOSE 4000
