@@ -5,6 +5,8 @@ services:
     container_name: be_support
     image: dedisalam/be_support:latest
     restart: 'unless-stopped'
+    ports:
+      - '4000:4000'
     networks:
       - production
 

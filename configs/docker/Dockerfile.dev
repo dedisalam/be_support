@@ -1,5 +1,5 @@
 # Common build stage
-FROM node:14.20.0
+FROM node:14.20.0-alpine
 
 COPY ./dist ./app
 
@@ -7,8 +7,10 @@ COPY ./package.json ./app
 
 WORKDIR /app
 
-RUN npm install
+RUN npm install -g npm
 
-CMD ["node", "main.js"]
+RUN npm install --omit=dev
+
+CMD ["node", "main.min.js"]
 
 EXPOSE 3000
