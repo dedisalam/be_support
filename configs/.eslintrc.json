@@ -1,0 +1,19 @@
+{
+  "extends": ["airbnb-base", "../.eslintrc.json"],
+  "rules": {
+    "import/extensions": [
+      "error",
+      {
+        "json": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true
+      }
+    ]
+  }
+}

@@ -1,9 +1,11 @@
-import axios from 'axios';
-import { DOMAIN } from '@config';
+import { DOMAIN } from "@config";
+import axios from "axios";
 
-const getVillages = async id => {
+const getVillages = async (id) => {
   try {
-    const Get = await axios.get(`${DOMAIN.INDONESIA}/data-indonesia/kelurahan/${id}.json`);
+    const Get = await axios.get(
+      `${DOMAIN.INDONESIA}/data-indonesia/kelurahan/${id}.json`,
+    );
     const result = Get.data;
     return result;
   } catch (error) {

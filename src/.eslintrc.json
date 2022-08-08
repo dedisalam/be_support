@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:prettier/recommended",
+    "../.eslintrc.json"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true // Allows for the parsing of JSX
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  // Fine tune rules
+  "rules": {
+    // typescript-eslint
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/consistent-type-exports": ["error"],
+    "@typescript-eslint/consistent-type-imports": ["error"],
+    "@typescript-eslint/member-delimiter-style": ["error"],
+    "@typescript-eslint/method-signature-style": ["error"],
+    "@typescript-eslint/prefer-regexp-exec": ["error"],
+    "@typescript-eslint/promise-function-async": ["error"],
+    "@typescript-eslint/sort-type-union-intersection-members": ["error"],
+    "@typescript-eslint/type-annotation-spacing": ["error"],
+    "indent": "off",
+    "@typescript-eslint/indent": ["error"],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ]
+  }
+}
