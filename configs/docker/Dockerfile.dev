@@ -11,6 +11,6 @@ RUN npm install -g npm
 
 RUN npm install --omit=dev
 
-CMD ["node", "main.min.js"]
+CMD ["node", "js/main.js"]
 
 EXPOSE 3000
