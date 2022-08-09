@@ -1,6 +1,6 @@
 import http from "http";
+import { NODE_ENV, PORT } from "@config";
 import express from "express";
-import { NODE_ENV, PORT } from "./config";
 // import {
 //   connectToDatabase,
 //   initializeErrorHandling,
@@ -8,7 +8,7 @@ import { NODE_ENV, PORT } from "./config";
 //   initializeQuery,
 //   initializeSwagger,
 // } from "./init";
-// import routes from "./routes";
+import routes from "./routes";
 import {
   logger,
   // validateEnv
@@ -21,7 +21,7 @@ const app = express();
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 // connectToDatabase();
 // initializeMiddlewares(app);
-// routes(app);
+routes(app);
 // initializeSwagger(app);
 // initializeErrorHandling(app);
 // setTimeout(initializeQuery, 5000);

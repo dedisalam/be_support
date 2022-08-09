@@ -5,7 +5,7 @@
   "author": "Dedi Salam Permana",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --config configs/nodemon.json .",
+    "start": "nodemon --config configs/nodemon.json",
     "build": "npm run clean-dist && webpack --env mode=production --config=configs/webpack/config.js",
     "build-dev": "npm run clean-dist && webpack --env mode=development --config=configs/webpack/config.js",
     "clean-dist": "rimraf dist/*"

@@ -22,12 +22,12 @@
     "baseUrl": "src",
     "paths": {
       "@config": ["config"],
-      "@configs/*": ["../configs/*"],
       "@controllers": ["controllers"],
       "@controllers/*": ["controllers/*"],
       "@databases": ["databases"],
       "@dtos/*": ["dtos/*"],
       "@exceptions": ["exceptions"],
+      "@interfaces": ["interfaces"],
       "@interfaces/*": ["interfaces/*"],
       "@middlewares": ["middlewares"],
       "@models/*": ["models/*"],

@@ -1,11 +1,10 @@
-import { Router } from 'express';
-import { authMiddleware } from '@middlewares';
-import { Read } from '@controllers/admin/dashboard';
+import { Admin } from "@controllers";
+import { Router } from "express";
 
 const Dashboard = Router();
-const path = '/dashboard';
+const path = "/dashboard";
 
 // Read
-Dashboard.get(`${path}`, authMiddleware, Read);
+Dashboard.get(`${path}`, Admin.Dashboard.Read);
 
 export default Dashboard;

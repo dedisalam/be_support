@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-import Read from './read';
+import Admin from "./admin";
+import Read from "./read";
 
-export { Read };
+export { Read, Admin };

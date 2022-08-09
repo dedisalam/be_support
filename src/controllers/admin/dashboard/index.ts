@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-import Read from './read';
+import Read from "./read";
 
-export { Read };
+export default { Read };
