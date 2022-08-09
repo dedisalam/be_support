@@ -5,10 +5,7 @@
   "author": "Dedi Salam Permana",
   "license": "MIT",
   "scripts": {
-    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
-    "start-prod": "NODE_ENV=production node dist/server.js",
-    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
-    "lint:fix": "npm run lint -- --fix",
+    "start": "nodemon --config configs/nodemon.json .",
     "build": "npm run clean-dist && webpack --env mode=production --config=configs/webpack/config.js",
     "build-dev": "npm run clean-dist && webpack --env mode=development --config=configs/webpack/config.js",
     "clean-dist": "rimraf dist/*"
