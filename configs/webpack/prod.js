@@ -1,4 +1,4 @@
-const nodeExternals = require("webpack-node-externals");
+const webpackNodeExternals = require("webpack-node-externals");
 const Entry = require("./entry");
 const Module = require("./module");
 const Optimization = require("./optimization");
@@ -10,7 +10,7 @@ const Config = (env) => {
   return {
     devtool: "source-map",
     entry: Entry,
-    externals: [nodeExternals()],
+    externals: [webpackNodeExternals()],
     externalsPresets: { node: true },
     mode: env.mode,
     module: Module,
