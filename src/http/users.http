@@ -1,17 +1,17 @@
 # baseURL
-@baseURL = https://localhost:7000
+@baseURL = http://localhost:3000
 
 ###
 # Find All Users
-GET {{ baseURL }}/admin/users
+GET {{ baseURL }}/users
 
 ###
 # Find User By Id
-GET {{ baseURL }}/admin/user/1
+GET {{ baseURL }}/users/1
 
 ###
 # Create User
-POST {{ baseURL }}/admin/user
+POST {{ baseURL }}/users
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ###
 # Modify User By Id
-PUT {{ baseURL }}/admin/user/1
+PUT {{ baseURL }}/users/1
 Content-Type: application/json
 
 {
@@ -31,4 +31,4 @@ Content-Type: application/json
 
 ###
 # Delete User By Id
-DELETE {{ baseURL }}/admin/user/1
+DELETE {{ baseURL }}/users/1

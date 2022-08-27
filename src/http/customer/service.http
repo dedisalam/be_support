@@ -1,6 +1,0 @@
-# baseURL
-@baseURL = https://localhost:7000
-
-###
-# Get s
-GET {{ baseURL }}/customer/services

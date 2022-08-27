@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { Sequelize } from 'sequelize';
 import request from 'supertest';
 import App from '@app';
-import { CreateUser } from '@dtos/users.dto';
+import { CreateUserDto } from '@dtos/users.dto';
 import AuthRoute from '@routes/auth.route';
 
 afterAll(async () => {
@@ -12,13 +12,13 @@ afterAll(async () => {
 describe('Testing Auth', () => {
   describe('[POST] /signup', () => {
     it('response should have the Create userData', async () => {
-      const userData: CreateUser = {
+      const userData: CreateUserDto = {
         email: 'test@email.com',
         password: 'q1w2e3r4!',
       };
 
       const authRoute = new AuthRoute();
-      const users = authRoute.authController.auth.users;
+      const users = authRoute.authController.authService.users;
 
       users.findOne = jest.fn().mockReturnValue(null);
       users.create = jest.fn().mockReturnValue({
@@ -35,13 +35,13 @@ describe('Testing Auth', () => {
 
   describe('[POST] /login', () => {
     it('response should have the Set-Cookie header with the Authorization token', async () => {
-      const userData: CreateUser = {
+      const userData: CreateUserDto = {
         email: 'test@email.com',
         password: 'q1w2e3r4!',
       };
 
       const authRoute = new AuthRoute();
-      const users = authRoute.authController.auth.users;
+      const users = authRoute.authController.authService.users;
 
       users.findOne = jest.fn().mockReturnValue({
         id: 1,
