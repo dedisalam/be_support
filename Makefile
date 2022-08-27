@@ -13,11 +13,11 @@ all: clean build
 build:
 	npm install
 	npm run build
-	docker build -t ${APP_NAME}\
-		-f Dockerfile .
+	docker build -t ${APP_NAME} -f Dockerfile .
 
 # Clean the container image
 clean:
+	docker system prune -f
 	docker rmi -f ${APP_NAME}
 
 # Run the container image
