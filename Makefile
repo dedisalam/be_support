@@ -1,8 +1,6 @@
 include .env.production.local
 export $(shell sed 's/=.*//' .env.production.local)
 
-APP_NAME = dedisalam/be_support
-
 all: clean \
 build-source \
 build-image \
@@ -14,6 +12,9 @@ build-image:
 build-source:
 	npm install
 	npm run build
+
+push-image:
+	docker push ${APP_NAME}
 
 clean:
 	docker system prune -f
