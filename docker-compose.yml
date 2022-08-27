@@ -5,7 +5,7 @@ services:
     image: ${OWNER_APP}/${APP_NAME}:latest
     container_name: ${APP_NAME}
     ports:
-      - '${PORT}:${PORT}'
+      - '3000:3000'
     restart: 'unless-stopped'
     networks:
       - production
