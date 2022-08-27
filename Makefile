@@ -7,12 +7,7 @@ APP_NAME := $(APP_NAME)
 
 .PHONY: build
 
-all: build
-
-# Build the container image - Dvelopment
-build-dev:
-	docker build -t ${APP_NAME}\
-		-f Dockerfile .
+all: clean build
 
 # Build the container image - Production
 build:
