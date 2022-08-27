@@ -24,9 +24,9 @@ class App {
     this.port = PORT || 3000;
 
     this.connectToDatabase();
+    this.initializeSwagger();
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
-    this.initializeSwagger();
     this.initializeErrorHandling();
   }
 
