@@ -1,53 +1,53 @@
 import { compare, hash } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { SECRET_KEY } from '@config';
-import DB from '@databases/admin';
-import { CreateUserDto } from '@dtos/admin/user.dto';
+import ADMIN from '@databases/admin';
+import Dto from '@dtos/admin/user.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, TokenData } from '@interfaces/admin/auth.interface';
-import { User } from '@interfaces/admin/user.interface';
+import Interface from '@interfaces/admin/user.interface';
 import { isEmpty } from '@utils/util';
 
-class AuthService {
-  public users = DB.Users;
+class Service {
+  public table = ADMIN.User;
 
-  public async signup(userData: CreateUserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
+  public async signup(data: Dto): Promise<Interface> {
+    if (isEmpty(data)) throw new HttpException(400, 'Data is empty');
 
-    const findUser: User = await this.users.findOne({ where: { email: userData.email } });
-    if (findUser) throw new HttpException(409, `This email ${userData.email} already exists`);
+    const find: Interface = await this.table.findOne({ where: { email: data.email } });
+    if (find) throw new HttpException(409, `This ${data.email} already exists`);
 
-    const hashedPassword = await hash(userData.password, 10);
-    const createUserData: User = await this.users.create({ ...userData, password: hashedPassword });
+    const hashedPassword = await hash(data.password, 10);
+    const create: Interface = await this.table.create({ ...data, password: hashedPassword });
 
-    return createUserData;
+    return create;
   }
 
-  public async login(userData: CreateUserDto): Promise<{ cookie: string; findUser: User }> {
-    if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
+  public async login(data: Dto): Promise<{ cookie: string; findUser: Interface }> {
+    if (isEmpty(data)) throw new HttpException(400, 'Data is empty');
 
-    const findUser: User = await this.users.findOne({ where: { email: userData.email } });
-    if (!findUser) throw new HttpException(409, `This email ${userData.email} was not found`);
+    const find: Interface = await this.table.findOne({ where: { email: data.email } });
+    if (!find) throw new HttpException(409, `This ${data.email} was not found`);
 
-    const isPasswordMatching: boolean = await compare(userData.password, findUser.password);
+    const isPasswordMatching: boolean = await compare(data.password, find.password);
     if (!isPasswordMatching) throw new HttpException(409, 'Password not matching');
 
-    const tokenData = this.createToken(findUser);
+    const tokenData = this.createToken(find);
     const cookie = this.createCookie(tokenData);
 
-    return { cookie, findUser };
+    return { cookie, findUser: find };
   }
 
-  public async logout(userData: User): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
+  public async logout(data: Interface): Promise<Interface> {
+    if (isEmpty(data)) throw new HttpException(400, 'Data is empty');
 
-    const findUser: User = await this.users.findOne({ where: { email: userData.email, password: userData.password } });
-    if (!findUser) throw new HttpException(409, "User doesn't exist");
+    const find: Interface = await this.table.findOne({ where: { email: data.email, password: data.password } });
+    if (!find) throw new HttpException(409, "User doesn't exist");
 
-    return findUser;
+    return find;
   }
 
-  public createToken(user: User): TokenData {
+  public createToken(user: Interface): TokenData {
     const dataStoredInToken: DataStoredInToken = { id: user.id };
     const secretKey: string = SECRET_KEY;
     const expiresIn: number = 60 * 60;
@@ -60,4 +60,4 @@ class AuthService {
   }
 }
 
-export default AuthService;
+export default Service;

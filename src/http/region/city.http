@@ -1,0 +1,32 @@
+# baseURL
+@baseURL = http://localhost:3000
+
+###
+# Find All Cities
+GET {{ baseURL }}/region/cities
+
+###
+# Find City By Id
+GET {{ baseURL }}/region/city/1
+
+###
+# Create City
+POST {{ baseURL }}/region/city
+Content-Type: application/json
+
+{
+    "name": "Bandung",
+}
+
+###
+# Modify City By Id
+PUT {{ baseURL }}/region/city/1
+Content-Type: application/json
+
+{
+    "name": "Jakarta",
+}
+
+###
+# Delete City By Id
+DELETE {{ baseURL }}/region/city/1

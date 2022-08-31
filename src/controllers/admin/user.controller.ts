@@ -1,65 +1,65 @@
 import { NextFunction, Request, Response } from 'express';
-import { CreateUserDto } from '@dtos/admin/user.dto';
-import { User } from '@interfaces/admin/user.interface';
-import userService from '@services/admin/user.service';
+import Dto from '@dtos/admin/user.dto';
+import Interface from '@interfaces/admin/user.interface';
+import Service from '@services/admin/user.service';
 
-class UsersController {
-  public userService = new userService();
+class Controller {
+  public service = new Service();
 
-  public getUsers = async (req: Request, res: Response, next: NextFunction) => {
+  public getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const findAllUsersData: User[] = await this.userService.findAllUser();
+      const findAll: Interface[] = await this.service.findAll();
 
-      res.status(200).json({ data: findAllUsersData, message: 'findAll' });
+      res.status(200).json({ data: findAll, message: 'findAll' });
     } catch (error) {
       next(error);
     }
   };
 
-  public getUserById = async (req: Request, res: Response, next: NextFunction) => {
+  public getById = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userId = Number(req.params.id);
-      const findOneUserData: User = await this.userService.findUserById(userId);
+      const id = Number(req.params.id);
+      const findOne: Interface = await this.service.findById(id);
 
-      res.status(200).json({ data: findOneUserData, message: 'findOne' });
+      res.status(200).json({ data: findOne, message: 'findOne' });
     } catch (error) {
       next(error);
     }
   };
 
-  public createUser = async (req: Request, res: Response, next: NextFunction) => {
+  public create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userData: CreateUserDto = req.body;
-      const createUserData: User = await this.userService.createUser(userData);
+      const data: Dto = req.body;
+      const create: Interface = await this.service.create(data);
 
-      res.status(201).json({ data: createUserData, message: 'created' });
+      res.status(201).json({ data: create, message: 'created' });
     } catch (error) {
       next(error);
     }
   };
 
-  public updateUser = async (req: Request, res: Response, next: NextFunction) => {
+  public update = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userId = Number(req.params.id);
-      const userData: CreateUserDto = req.body;
-      const updateUserData: User = await this.userService.updateUser(userId, userData);
+      const id = Number(req.params.id);
+      const data: Dto = req.body;
+      const update: Interface = await this.service.update(id, data);
 
-      res.status(200).json({ data: updateUserData, message: 'updated' });
+      res.status(200).json({ data: update, message: 'updated' });
     } catch (error) {
       next(error);
     }
   };
 
-  public deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+  public delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userId = Number(req.params.id);
-      const deleteUserData: User = await this.userService.deleteUser(userId);
+      const id = Number(req.params.id);
+      const deleteData: Interface = await this.service.delete(id);
 
-      res.status(200).json({ data: deleteUserData, message: 'deleted' });
+      res.status(200).json({ data: deleteData, message: 'deleted' });
     } catch (error) {
       next(error);
     }
   };
 }
 
-export default UsersController;
+export default Controller;

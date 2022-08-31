@@ -8,7 +8,8 @@ import morgan from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
-import DB from '@databases/admin';
+import ADMIN from '@databases/admin';
+import REGION from '@databases/region';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
@@ -44,7 +45,8 @@ class App {
   }
 
   private connectToDatabase() {
-    DB.sequelize.sync({ force: false });
+    ADMIN.sequelize.sync({ force: false });
+    REGION.sequelize.sync({ force: false });
   }
 
   private initializeMiddlewares() {

@@ -1,24 +1,24 @@
 import { Router } from 'express';
-import AuthController from '@controllers/admin/auth.controller';
-import { CreateUserDto } from '@dtos/admin/user.dto';
+import Controller from '@controllers/admin/auth.controller';
+import Dto from '@dtos/admin/user.dto';
 import { Routes } from '@interfaces/routes.interface';
 import authMiddleware from '@middlewares/auth.middleware';
 import validationMiddleware from '@middlewares/validation.middleware';
 
-class AuthRoute implements Routes {
-  public path = '/';
+class Route implements Routes {
+  public path = '/admin/user';
   public router = Router();
-  public authController = new AuthController();
+  public controller = new Controller();
 
   constructor() {
     this.initializeRoutes();
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}signup`, validationMiddleware(CreateUserDto, 'body'), this.authController.signUp);
-    this.router.post(`${this.path}login`, validationMiddleware(CreateUserDto, 'body'), this.authController.logIn);
-    this.router.post(`${this.path}logout`, authMiddleware, this.authController.logOut);
+    this.router.post(`${this.path}/signup`, validationMiddleware(Dto, 'body'), this.controller.signUp);
+    this.router.post(`${this.path}/login`, validationMiddleware(Dto, 'body'), this.controller.logIn);
+    this.router.post(`${this.path}/logout`, authMiddleware, this.controller.logOut);
   }
 }
 
-export default AuthRoute;
+export default Route;

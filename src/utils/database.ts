@@ -1,7 +1,7 @@
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER, NODE_ENV } from '@config';
 import { logger } from './logger';
 
-const Database = (Sequelize, name) => {
+const Database = (Sequelize, name: string) => {
   const sequelize = new Sequelize.Sequelize(DB_DATABASE + '_' + name, DB_USER, DB_PASSWORD, {
     dialect: 'mysql',
     host: DB_HOST,

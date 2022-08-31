@@ -1,61 +1,61 @@
 import { hash } from 'bcrypt';
-import DB from '@databases/admin';
-import { CreateUserDto } from '@dtos/admin/user.dto';
+import ADMIN from '@databases/admin';
+import Dto from '@dtos/admin/user.dto';
 import { HttpException } from '@exceptions/HttpException';
-import { User } from '@interfaces/admin/user.interface';
+import Interface from '@interfaces/admin/user.interface';
 import { isEmpty } from '@utils/util';
 
-class UserService {
-  public users = DB.Users;
+class Service {
+  public table = ADMIN.User;
 
-  public async findAllUser(): Promise<User[]> {
-    const allUser: User[] = await this.users.findAll();
-    return allUser;
+  public async findAll(): Promise<Interface[]> {
+    const all: Interface[] = await this.table.findAll();
+    return all;
   }
 
-  public async findUserById(userId: number): Promise<User> {
-    if (isEmpty(userId)) throw new HttpException(400, 'UserId is empty');
+  public async findById(id: number): Promise<Interface> {
+    if (isEmpty(id)) throw new HttpException(400, 'Id is empty');
 
-    const findUser: User = await this.users.findByPk(userId);
-    if (!findUser) throw new HttpException(409, "User doesn't exist");
+    const find: Interface = await this.table.findByPk(id);
+    if (!find) throw new HttpException(409, "User doesn't exist");
 
-    return findUser;
+    return find;
   }
 
-  public async createUser(userData: CreateUserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
+  public async create(data: Dto): Promise<Interface> {
+    if (isEmpty(data)) throw new HttpException(400, 'Data is empty');
 
-    const findUser: User = await this.users.findOne({ where: { email: userData.email } });
-    if (findUser) throw new HttpException(409, `This email ${userData.email} already exists`);
+    const find: Interface = await this.table.findOne({ where: { email: data.email } });
+    if (find) throw new HttpException(409, `This ${data.email} already exists`);
 
-    const hashedPassword = await hash(userData.password, 10);
-    const createUserData: User = await this.users.create({ ...userData, password: hashedPassword });
-    return createUserData;
+    const hashedPassword = await hash(data.password, 10);
+    const create: Interface = await this.table.create({ ...data, password: hashedPassword });
+    return create;
   }
 
-  public async updateUser(userId: number, userData: CreateUserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
+  public async update(id: number, data: Dto): Promise<Interface> {
+    if (isEmpty(data)) throw new HttpException(400, 'Data is empty');
 
-    const findUser: User = await this.users.findByPk(userId);
-    if (!findUser) throw new HttpException(409, "User doesn't exist");
+    const find: Interface = await this.table.findByPk(id);
+    if (!find) throw new HttpException(409, "User doesn't exist");
 
-    const hashedPassword = await hash(userData.password, 10);
-    await this.users.update({ ...userData, password: hashedPassword }, { where: { id: userId } });
+    const hashedPassword = await hash(data.password, 10);
+    await this.table.update({ ...data, password: hashedPassword }, { where: { id: id } });
 
-    const updateUser: User = await this.users.findByPk(userId);
-    return updateUser;
+    const update: Interface = await this.table.findByPk(id);
+    return update;
   }
 
-  public async deleteUser(userId: number): Promise<User> {
-    if (isEmpty(userId)) throw new HttpException(400, "User doesn't existId");
+  public async delete(id: number): Promise<Interface> {
+    if (isEmpty(id)) throw new HttpException(400, "Id doesn't exist");
 
-    const findUser: User = await this.users.findByPk(userId);
-    if (!findUser) throw new HttpException(409, "User doesn't exist");
+    const find: Interface = await this.table.findByPk(id);
+    if (!find) throw new HttpException(409, "User doesn't exist");
 
-    await this.users.destroy({ where: { id: userId } });
+    await this.table.destroy({ where: { id: id } });
 
-    return findUser;
+    return find;
   }
 }
 
-export default UserService;
+export default Service;

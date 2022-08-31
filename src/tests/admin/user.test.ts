@@ -2,20 +2,20 @@ import bcrypt from 'bcrypt';
 import { Sequelize } from 'sequelize';
 import request from 'supertest';
 import App from '@app';
-import { CreateUserDto } from '@dtos/admin/user.dto';
-import UserRoute from '@routes/admin/user.route';
+import Dto from '@dtos/admin/user.dto';
+import Route from '@routes/admin/user.route';
 
 afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
 });
 
-describe('Testing Users', () => {
-  describe('[GET] /users', () => {
-    it('response findAll users', async () => {
-      const usersRoute = new UserRoute();
-      const users = usersRoute.usersController.userService.users;
+describe('Testing User', () => {
+  describe('[GET] /admin/users', () => {
+    it('response findAll user', async () => {
+      const route = new Route();
+      const table = route.controller.service.table;
 
-      users.findAll = jest.fn().mockReturnValue([
+      table.findAll = jest.fn().mockReturnValue([
         {
           id: 1,
           email: 'a@email.com',
@@ -34,98 +34,98 @@ describe('Testing Users', () => {
       ]);
 
       (Sequelize as any).authenticate = jest.fn();
-      const app = new App([usersRoute]);
-      return request(app.getServer()).get(`${usersRoute.path}`).expect(200);
+      const app = new App([route]);
+      return request(app.getServer()).get(`${route.path}s`).expect(200);
     });
   });
 
-  describe('[GET] /users/:id', () => {
+  describe('[GET] /admin/user/:id', () => {
     it('response findOne user', async () => {
-      const userId = 1;
+      const id = 1;
 
-      const usersRoute = new UserRoute();
-      const users = usersRoute.usersController.userService.users;
+      const route = new Route();
+      const table = route.controller.service.table;
 
-      users.findByPk = jest.fn().mockReturnValue({
+      table.findByPk = jest.fn().mockReturnValue({
         id: 1,
         email: 'a@email.com',
         password: await bcrypt.hash('q1w2e3r4!', 10),
       });
 
       (Sequelize as any).authenticate = jest.fn();
-      const app = new App([usersRoute]);
-      return request(app.getServer()).get(`${usersRoute.path}/${userId}`).expect(200);
+      const app = new App([route]);
+      return request(app.getServer()).get(`${route.path}/${id}`).expect(200);
     });
   });
 
-  describe('[POST] /users', () => {
+  describe('[POST] /admin/user', () => {
     it('response Create user', async () => {
-      const userData: CreateUserDto = {
+      const data: Dto = {
         email: 'test@email.com',
         password: 'q1w2e3r4!',
       };
 
-      const usersRoute = new UserRoute();
-      const users = usersRoute.usersController.userService.users;
+      const route = new Route();
+      const table = route.controller.service.table;
 
-      users.findOne = jest.fn().mockReturnValue(null);
-      users.create = jest.fn().mockReturnValue({
+      table.findOne = jest.fn().mockReturnValue(null);
+      table.create = jest.fn().mockReturnValue({
         id: 1,
-        email: userData.email,
-        password: await bcrypt.hash(userData.password, 10),
+        email: data.email,
+        password: await bcrypt.hash(data.password, 10),
       });
 
       (Sequelize as any).authenticate = jest.fn();
-      const app = new App([usersRoute]);
-      return request(app.getServer()).post(`${usersRoute.path}`).send(userData).expect(201);
+      const app = new App([route]);
+      return request(app.getServer()).post(`${route.path}`).send(data).expect(201);
     });
   });
 
-  describe('[PUT] /users/:id', () => {
+  describe('[PUT] /admin/user/:id', () => {
     it('response Update user', async () => {
-      const userId = 1;
-      const userData: CreateUserDto = {
+      const id = 1;
+      const data: Dto = {
         email: 'test@email.com',
         password: '1q2w3e4r!',
       };
 
-      const usersRoute = new UserRoute();
-      const users = usersRoute.usersController.userService.users;
+      const route = new Route();
+      const table = route.controller.service.table;
 
-      users.findByPk = jest.fn().mockReturnValue({
-        id: userId,
-        email: userData.email,
-        password: await bcrypt.hash(userData.password, 10),
+      table.findByPk = jest.fn().mockReturnValue({
+        id: id,
+        email: data.email,
+        password: await bcrypt.hash(data.password, 10),
       });
-      users.update = jest.fn().mockReturnValue([1]);
-      users.findByPk = jest.fn().mockReturnValue({
-        id: userId,
-        email: userData.email,
-        password: await bcrypt.hash(userData.password, 10),
+      table.update = jest.fn().mockReturnValue([1]);
+      table.findByPk = jest.fn().mockReturnValue({
+        id: id,
+        email: data.email,
+        password: await bcrypt.hash(data.password, 10),
       });
 
       (Sequelize as any).authenticate = jest.fn();
-      const app = new App([usersRoute]);
-      return request(app.getServer()).put(`${usersRoute.path}/${userId}`).send(userData).expect(200);
+      const app = new App([route]);
+      return request(app.getServer()).put(`${route.path}/${id}`).send(data).expect(200);
     });
   });
 
-  describe('[DELETE] /users/:id', () => {
+  describe('[DELETE] /admin/user/:id', () => {
     it('response Delete user', async () => {
-      const userId = 1;
+      const id = 1;
 
-      const usersRoute = new UserRoute();
-      const users = usersRoute.usersController.userService.users;
+      const route = new Route();
+      const table = route.controller.service.table;
 
-      users.findByPk = jest.fn().mockReturnValue({
-        id: userId,
+      table.findByPk = jest.fn().mockReturnValue({
+        id: id,
         email: 'a@email.com',
         password: await bcrypt.hash('q1w2e3r4!', 10),
       });
 
       (Sequelize as any).authenticate = jest.fn();
-      const app = new App([usersRoute]);
-      return request(app.getServer()).delete(`${usersRoute.path}/${userId}`).expect(200);
+      const app = new App([route]);
+      return request(app.getServer()).delete(`${route.path}/${id}`).expect(200);
     });
   });
 });

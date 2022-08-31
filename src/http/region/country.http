@@ -1,0 +1,32 @@
+# baseURL
+@baseURL = http://localhost:3000
+
+###
+# Find All Countries
+GET {{ baseURL }}/region/countries
+
+###
+# Find Country By Id
+GET {{ baseURL }}/region/country/1
+
+###
+# Create Country
+POST {{ baseURL }}/region/country
+Content-Type: application/json
+
+{
+    "name": "Indonesia",
+}
+
+###
+# Modify Country By Id
+PUT {{ baseURL }}/region/country/1
+Content-Type: application/json
+
+{
+    "name": "Jepang",
+}
+
+###
+# Delete Country By Id
+DELETE {{ baseURL }}/region/country/1
