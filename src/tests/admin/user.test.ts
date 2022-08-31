@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt';
 import { Sequelize } from 'sequelize';
 import request from 'supertest';
 import App from '@app';
-import Dto from '@dtos/admin/user.dto';
-import Route from '@routes/admin/user.route';
+import Dto from '@dtos/admin/user';
+import Route from '@routes/admin/user';
 
 afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));

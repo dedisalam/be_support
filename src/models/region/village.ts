@@ -1,9 +1,9 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
-import Interface from '@interfaces/region/province.interface';
+import Interface from '@interfaces/region/village';
 
-export type ProvinceCreationAttributes = Optional<Interface, 'id' | 'name'>;
+export type VillageCreationAttributes = Optional<Interface, 'id' | 'name'>;
 
-export class ProvinceModel extends Model<Interface, ProvinceCreationAttributes> implements Interface {
+export class VillageModel extends Model<Interface, VillageCreationAttributes> implements Interface {
   public id: number;
   public name: string;
 
@@ -11,8 +11,8 @@ export class ProvinceModel extends Model<Interface, ProvinceCreationAttributes> 
   public readonly updatedAt!: Date;
 }
 
-export default function (sequelize: Sequelize): typeof ProvinceModel {
-  ProvinceModel.init(
+export default function (sequelize: Sequelize): typeof VillageModel {
+  VillageModel.init(
     {
       id: {
         autoIncrement: true,
@@ -25,11 +25,11 @@ export default function (sequelize: Sequelize): typeof ProvinceModel {
       },
     },
     {
-      tableName: 'province',
+      tableName: 'village',
       freezeTableName: true,
       sequelize,
     },
   );
 
-  return ProvinceModel;
+  return VillageModel;
 }

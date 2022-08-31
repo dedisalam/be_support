@@ -2,10 +2,10 @@ import { compare, hash } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { SECRET_KEY } from '@config';
 import ADMIN from '@databases/admin';
-import Dto from '@dtos/admin/user.dto';
+import Dto from '@dtos/admin/user';
 import { HttpException } from '@exceptions/HttpException';
-import { DataStoredInToken, TokenData } from '@interfaces/admin/auth.interface';
-import Interface from '@interfaces/admin/user.interface';
+import { DataStoredInToken, TokenData } from '@interfaces/admin/auth';
+import Interface from '@interfaces/admin/user';
 import { isEmpty } from '@utils/util';
 
 class Service {

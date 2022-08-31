@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize';
-import CountryModel from '@models/region/country.model';
-import ProvinceModel from '@models/region/province.model';
-import CityModel from '@models/region/city.model';
-import SubdistrictModel from '@models/region/subdistrict.model';
-import VillageModel from '@models/region/village.model';
+import CountryModel from '@models/region/country';
+import ProvinceModel from '@models/region/province';
+import CityModel from '@models/region/city';
+import SubdistrictModel from '@models/region/subdistrict';
+import VillageModel from '@models/region/village';
 import Database from '@utils/database';
 
 const sequelize = Database(Sequelize, 'region');

@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize';
 import request from 'supertest';
 import App from '@app';
-import Dto from '@dtos/region/subdistrict.dto';
-import Route from '@routes/region/subdistrict.route';
+import Dto from '@dtos/region/subdistrict';
+import Route from '@routes/region/subdistrict';
 
 afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));

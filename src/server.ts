@@ -1,12 +1,12 @@
 import App from '@app';
-import IndexRoute from '@routes/index.route';
-import AuthRoute from '@routes/admin/auth.route';
-import UserRoute from '@routes/admin/user.route';
-import CountryRoute from '@routes/region/country.route';
-import ProvinceRoute from '@routes/region/province.route';
-import CityRoute from '@routes/region/city.route';
-import SubdistrictRoute from '@routes/region/subdistrict.route';
-import VillageRoute from '@routes/region/village.route';
+import IndexRoute from '@routes/index';
+import AuthRoute from '@routes/admin/auth';
+import UserRoute from '@routes/admin/user';
+import CountryRoute from '@routes/region/country';
+import ProvinceRoute from '@routes/region/province';
+import CityRoute from '@routes/region/city';
+import SubdistrictRoute from '@routes/region/subdistrict';
+import VillageRoute from '@routes/region/village';
 import validateEnv from '@utils/validateEnv';
 
 validateEnv();

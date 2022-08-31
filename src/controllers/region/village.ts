@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import Dto from '@dtos/region/country.dto';
-import Interface from '@interfaces/region/country.interface';
-import Service from '@services/region/country.service';
+import Dto from '@dtos/region/village';
+import Interface from '@interfaces/region/village';
+import Service from '@services/region/village';
 
 class Controller {
   public service = new Service();

@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import Controller from '@controllers/admin/user.controller';
-import Dto from '@dtos/admin/user.dto';
-import { Routes } from '@interfaces/routes.interface';
-import validationMiddleware from '@middlewares/validation.middleware';
+import Controller from '@controllers/region/province';
+import Dto from '@dtos/region/province';
+import { Routes } from '@interfaces/routes';
+import validationMiddleware from '@middlewares/validation';
 
 class Route implements Routes {
-  public path = '/admin/user';
+  public path = '/region/province';
   public router = Router();
   public controller = new Controller();
 

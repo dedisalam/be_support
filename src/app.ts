@@ -10,8 +10,8 @@ import swaggerUi from 'swagger-ui-express';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
 import ADMIN from '@databases/admin';
 import REGION from '@databases/region';
-import { Routes } from '@interfaces/routes.interface';
-import errorMiddleware from '@middlewares/error.middleware';
+import { Routes } from '@interfaces/routes';
+import errorMiddleware from '@middlewares/error';
 import { logger, stream } from '@utils/logger';
 
 class App {

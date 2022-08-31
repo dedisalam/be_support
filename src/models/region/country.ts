@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
-import Interface from '@interfaces/region/country.interface';
+import Interface from '@interfaces/region/country';
 
 export type CountryCreationAttributes = Optional<Interface, 'id' | 'name'>;
 

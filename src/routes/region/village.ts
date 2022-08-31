@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import Controller from '@controllers/region/village.controller';
-import Dto from '@dtos/region/village.dto';
-import { Routes } from '@interfaces/routes.interface';
-import validationMiddleware from '@middlewares/validation.middleware';
+import Controller from '@controllers/region/village';
+import Dto from '@dtos/region/village';
+import { Routes } from '@interfaces/routes';
+import validationMiddleware from '@middlewares/validation';
 
 class Route implements Routes {
   public path = '/region/village';

@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import UserModel from '@models/admin/user.model';
+import UserModel from '@models/admin/user';
 import Database from '@utils/database';
 
 const sequelize = Database(Sequelize, 'admin');

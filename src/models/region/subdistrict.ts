@@ -1,9 +1,9 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
-import Interface from '@interfaces/region/city.interface';
+import Interface from '@interfaces/region/subdistrict';
 
-export type CityCreationAttributes = Optional<Interface, 'id' | 'name'>;
+export type SubdistrictCreationAttributes = Optional<Interface, 'id' | 'name'>;
 
-export class CityModel extends Model<Interface, CityCreationAttributes> implements Interface {
+export class SubdistrictModel extends Model<Interface, SubdistrictCreationAttributes> implements Interface {
   public id: number;
   public name: string;
 
@@ -11,8 +11,8 @@ export class CityModel extends Model<Interface, CityCreationAttributes> implemen
   public readonly updatedAt!: Date;
 }
 
-export default function (sequelize: Sequelize): typeof CityModel {
-  CityModel.init(
+export default function (sequelize: Sequelize): typeof SubdistrictModel {
+  SubdistrictModel.init(
     {
       id: {
         autoIncrement: true,
@@ -25,11 +25,11 @@ export default function (sequelize: Sequelize): typeof CityModel {
       },
     },
     {
-      tableName: 'city',
+      tableName: 'subdistrict',
       freezeTableName: true,
       sequelize,
     },
   );
 
-  return CityModel;
+  return SubdistrictModel;
 }

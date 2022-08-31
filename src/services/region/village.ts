@@ -1,11 +1,11 @@
 import REGION from '@databases/region';
-import Dto from '@dtos/region/city.dto';
+import Dto from '@dtos/region/village';
 import { HttpException } from '@exceptions/HttpException';
-import Interface from '@interfaces/region/city.interface';
+import Interface from '@interfaces/region/village';
 import { isEmpty } from '@utils/util';
 
 class Service {
-  public table = REGION.City;
+  public table = REGION.Village;
 
   public async findAll(): Promise<Interface[]> {
     const all: Interface[] = await this.table.findAll();
@@ -16,7 +16,7 @@ class Service {
     if (isEmpty(id)) throw new HttpException(400, 'Id is empty');
 
     const find: Interface = await this.table.findByPk(id);
-    if (!find) throw new HttpException(409, "City doesn't exist");
+    if (!find) throw new HttpException(409, "Village doesn't exist");
 
     return find;
   }
@@ -35,7 +35,7 @@ class Service {
     if (isEmpty(data)) throw new HttpException(400, 'Data is empty');
 
     const find: Interface = await this.table.findByPk(id);
-    if (!find) throw new HttpException(409, "City doesn't exist");
+    if (!find) throw new HttpException(409, "Village doesn't exist");
 
     await this.table.update({ ...data }, { where: { id: id } });
 
@@ -47,7 +47,7 @@ class Service {
     if (isEmpty(id)) throw new HttpException(400, "Id doesn't exist");
 
     const find: Interface = await this.table.findByPk(id);
-    if (!find) throw new HttpException(409, "City doesn't exist");
+    if (!find) throw new HttpException(409, "Village doesn't exist");
 
     await this.table.destroy({ where: { id: id } });
 

@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import Dto from '@dtos/admin/user.dto';
-import Interface from '@interfaces/admin/user.interface';
-import { RequestWithUser } from '@interfaces/admin/auth.interface';
-import Service from '@services/admin/auth.service';
+import Dto from '@dtos/admin/user';
+import Interface from '@interfaces/admin/user';
+import { RequestWithUser } from '@interfaces/admin/auth';
+import Service from '@services/admin/auth';
 
 class Controller {
   public service = new Service();
