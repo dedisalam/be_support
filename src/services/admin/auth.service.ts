@@ -1,11 +1,11 @@
 import { compare, hash } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { SECRET_KEY } from '@config';
-import DB from '@databases';
-import { CreateUserDto } from '@dtos/users.dto';
+import DB from '@databases/admin';
+import { CreateUserDto } from '@dtos/admin/users.dto';
 import { HttpException } from '@exceptions/HttpException';
-import { DataStoredInToken, TokenData } from '@interfaces/auth.interface';
-import { User } from '@interfaces/users.interface';
+import { DataStoredInToken, TokenData } from '@interfaces/admin/auth.interface';
+import { User } from '@interfaces/admin/users.interface';
 import { isEmpty } from '@utils/util';
 
 class AuthService {
