@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { Sequelize } from 'sequelize';
 import request from 'supertest';
 import App from '@app';
-import { CreateUserDto } from '@dtos/admin/users.dto';
+import { CreateUserDto } from '@dtos/admin/user.dto';
 import AuthRoute from '@routes/admin/auth.route';
 
 afterAll(async () => {

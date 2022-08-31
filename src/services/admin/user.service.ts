@@ -1,8 +1,8 @@
 import { hash } from 'bcrypt';
 import DB from '@databases/admin';
-import { CreateUserDto } from '@dtos/admin/users.dto';
+import { CreateUserDto } from '@dtos/admin/user.dto';
 import { HttpException } from '@exceptions/HttpException';
-import { User } from '@interfaces/admin/users.interface';
+import { User } from '@interfaces/admin/user.interface';
 import { isEmpty } from '@utils/util';
 
 class UserService {
