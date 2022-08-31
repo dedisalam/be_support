@@ -20,11 +20,11 @@ push-image:
 	docker rmi -f ${OWNER_APP}/${APP_NAME}
 
 clean:
-	docker-compose down || true
+	docker compose down || true
 	rm -rf dist
 	docker system prune -f
 
 run:
-	docker-compose up -d
+	docker compose up -d
 
 
