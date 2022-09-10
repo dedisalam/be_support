@@ -15,7 +15,7 @@ const Database = (Sequelize, name: string) => {
     },
     pool: {
       min: 0,
-      max: 5,
+      max: 10,
     },
     logQueryParameters: NODE_ENV === 'development',
     logging: (query, time) => {

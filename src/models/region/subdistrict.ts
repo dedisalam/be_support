@@ -3,21 +3,17 @@ import Interface from '@interfaces/region/subdistrict';
 
 export type SubdistrictCreationAttributes = Optional<Interface, 'id' | 'name'>;
 
-export class SubdistrictModel extends Model<Interface, SubdistrictCreationAttributes> implements Interface {
+export class Subdistrict extends Model<Interface, SubdistrictCreationAttributes> implements Interface {
   public id: number;
   public name: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 }
 
-export default function (sequelize: Sequelize): typeof SubdistrictModel {
-  SubdistrictModel.init(
+export default function (sequelize: Sequelize): typeof Subdistrict {
+  Subdistrict.init(
     {
       id: {
-        autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
       },
       name: {
         allowNull: false,
@@ -27,9 +23,10 @@ export default function (sequelize: Sequelize): typeof SubdistrictModel {
     {
       tableName: 'subdistrict',
       freezeTableName: true,
+      timestamps: false,
       sequelize,
     },
   );
 
-  return SubdistrictModel;
+  return Subdistrict;
 }

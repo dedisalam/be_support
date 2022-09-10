@@ -18,14 +18,17 @@ describe('Testing City', () => {
         {
           id: 1,
           name: 'Bandung',
+          ProvinceId: 1,
         },
         {
           id: 2,
-          name: 'Jakarta',
+          name: 'Garut',
+          ProvinceId: 1,
         },
         {
           id: 3,
-          name: 'Semarang',
+          name: 'Tasikmalaya',
+          ProvinceId: 1,
         },
       ]);
 
@@ -56,7 +59,9 @@ describe('Testing City', () => {
   describe('[POST] /region/city', () => {
     it('response Create city', async () => {
       const data: Dto = {
+        id: 1,
         name: 'Bandung',
+        ProvinceId: 1,
       };
 
       const route = new Route();
@@ -78,7 +83,9 @@ describe('Testing City', () => {
     it('response Update city', async () => {
       const id = 1;
       const data: Dto = {
+        id: 1,
         name: 'Bandung',
+        ProvinceId: 1,
       };
 
       const route = new Route();

@@ -3,21 +3,17 @@ import Interface from '@interfaces/region/village';
 
 export type VillageCreationAttributes = Optional<Interface, 'id' | 'name'>;
 
-export class VillageModel extends Model<Interface, VillageCreationAttributes> implements Interface {
+export class Village extends Model<Interface, VillageCreationAttributes> implements Interface {
   public id: number;
   public name: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 }
 
-export default function (sequelize: Sequelize): typeof VillageModel {
-  VillageModel.init(
+export default function (sequelize: Sequelize): typeof Village {
+  Village.init(
     {
       id: {
-        autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
       },
       name: {
         allowNull: false,
@@ -27,9 +23,10 @@ export default function (sequelize: Sequelize): typeof VillageModel {
     {
       tableName: 'village',
       freezeTableName: true,
+      timestamps: false,
       sequelize,
     },
   );
 
-  return VillageModel;
+  return Village;
 }

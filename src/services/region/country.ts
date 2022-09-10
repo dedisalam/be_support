@@ -3,6 +3,7 @@ import Dto from '@dtos/region/country';
 import { HttpException } from '@exceptions/HttpException';
 import Interface from '@interfaces/region/country';
 import { isEmpty } from '@utils/util';
+import Data from '@data/region/countries.json';
 
 class Service {
   public table = REGION.Country;
@@ -52,6 +53,10 @@ class Service {
     await this.table.destroy({ where: { id: id } });
 
     return find;
+  }
+
+  public async initialData() {
+    await this.table.bulkCreate(Data);
   }
 }
 

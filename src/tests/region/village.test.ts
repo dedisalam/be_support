@@ -18,14 +18,17 @@ describe('Testing Village', () => {
         {
           id: 1,
           name: 'Kebonwaru',
+          SubdistrictId: 1,
         },
         {
           id: 2,
           name: 'Kacapiring',
+          SubdistrictId: 1,
         },
         {
           id: 3,
           name: 'Samoja',
+          SubdistrictId: 1,
         },
       ]);
 
@@ -56,7 +59,9 @@ describe('Testing Village', () => {
   describe('[POST] /region/village', () => {
     it('response Create village', async () => {
       const data: Dto = {
+        id: 1,
         name: 'Kebonwaru',
+        SubdistrictId: 1,
       };
 
       const route = new Route();
@@ -78,7 +83,9 @@ describe('Testing Village', () => {
     it('response Update village', async () => {
       const id = 1;
       const data: Dto = {
+        id: 1,
         name: 'Kebonwaru',
+        SubdistrictId: 1,
       };
 
       const route = new Route();

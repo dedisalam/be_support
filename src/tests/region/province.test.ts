@@ -18,14 +18,17 @@ describe('Testing Province', () => {
         {
           id: 1,
           name: 'Jawa Barat',
+          CountryId: 1,
         },
         {
           id: 2,
           name: 'Jawa Tengah',
+          CountryId: 1,
         },
         {
           id: 3,
           name: 'Jawa Timur',
+          CountryId: 1,
         },
       ]);
 
@@ -56,7 +59,9 @@ describe('Testing Province', () => {
   describe('[POST] /region/province', () => {
     it('response Create province', async () => {
       const data: Dto = {
+        id: 1,
         name: 'Jawa Barat',
+        CountryId: 1,
       };
 
       const route = new Route();
@@ -78,7 +83,9 @@ describe('Testing Province', () => {
     it('response Update province', async () => {
       const id = 1;
       const data: Dto = {
+        id: 1,
         name: 'Jawa Barat',
+        CountryId: 1,
       };
 
       const route = new Route();

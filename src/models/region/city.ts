@@ -3,16 +3,13 @@ import Interface from '@interfaces/region/city';
 
 export type CityCreationAttributes = Optional<Interface, 'id' | 'name'>;
 
-export class CityModel extends Model<Interface, CityCreationAttributes> implements Interface {
+export class City extends Model<Interface, CityCreationAttributes> implements Interface {
   public id: number;
   public name: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 }
 
-export default function (sequelize: Sequelize): typeof CityModel {
-  CityModel.init(
+export default function (sequelize: Sequelize): typeof City {
+  City.init(
     {
       id: {
         autoIncrement: true,
@@ -27,9 +24,10 @@ export default function (sequelize: Sequelize): typeof CityModel {
     {
       tableName: 'city',
       freezeTableName: true,
+      timestamps: false,
       sequelize,
     },
   );
 
-  return CityModel;
+  return City;
 }

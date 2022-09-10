@@ -18,14 +18,17 @@ describe('Testing Subdistrict', () => {
         {
           id: 1,
           name: 'Batununggal',
+          CityId: 1,
         },
         {
           id: 2,
           name: 'Antapani',
+          CityId: 1,
         },
         {
           id: 3,
           name: 'Sumur Bandung',
+          CityId: 1,
         },
       ]);
 
@@ -56,7 +59,9 @@ describe('Testing Subdistrict', () => {
   describe('[POST] /region/subdistrict', () => {
     it('response Create subdistrict', async () => {
       const data: Dto = {
+        id: 1,
         name: 'Batununggal',
+        CityId: 1,
       };
 
       const route = new Route();
@@ -78,7 +83,9 @@ describe('Testing Subdistrict', () => {
     it('response Update subdistrict', async () => {
       const id = 1;
       const data: Dto = {
+        id: 1,
         name: 'Batununggal',
+        CityId: 1,
       };
 
       const route = new Route();

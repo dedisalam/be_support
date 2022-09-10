@@ -3,19 +3,15 @@ import Interface from '@interfaces/region/province';
 
 export type ProvinceCreationAttributes = Optional<Interface, 'id' | 'name'>;
 
-export class ProvinceModel extends Model<Interface, ProvinceCreationAttributes> implements Interface {
+export class Province extends Model<Interface, ProvinceCreationAttributes> implements Interface {
   public id: number;
   public name: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 }
 
-export default function (sequelize: Sequelize): typeof ProvinceModel {
-  ProvinceModel.init(
+export default function (sequelize: Sequelize): typeof Province {
+  Province.init(
     {
       id: {
-        autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
@@ -27,9 +23,10 @@ export default function (sequelize: Sequelize): typeof ProvinceModel {
     {
       tableName: 'province',
       freezeTableName: true,
+      timestamps: false,
       sequelize,
     },
   );
 
-  return ProvinceModel;
+  return Province;
 }

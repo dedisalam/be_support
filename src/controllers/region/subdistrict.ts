@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import Dto from '@dtos/region/subdistrict';
 import Interface from '@interfaces/region/subdistrict';
 import Service from '@services/region/subdistrict';
+import { logger } from '@utils/logger';
 
 class Controller {
   public service = new Service();
@@ -58,6 +59,14 @@ class Controller {
       res.status(200).json({ data: deleteData, message: 'deleted' });
     } catch (error) {
       next(error);
+    }
+  };
+
+  public pull = async () => {
+    try {
+      await this.service.initialData();
+    } catch (error) {
+      logger.error(error);
     }
   };
 }

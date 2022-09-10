@@ -13,6 +13,11 @@ import REGION from '@databases/region';
 import { Routes } from '@interfaces/routes';
 import errorMiddleware from '@middlewares/error';
 import { logger, stream } from '@utils/logger';
+import CountryController from '@controllers/region/country';
+import ProvinceController from '@controllers/region/province';
+import CityController from '@controllers/region/city';
+import SubdistrictController from '@controllers/region/subdistrict';
+import VillageController from '@controllers/region/village';
 
 class App {
   public app: express.Application;
@@ -46,7 +51,16 @@ class App {
 
   private connectToDatabase() {
     ADMIN.sequelize.sync({ force: false });
-    REGION.sequelize.sync({ force: false });
+    REGION.sequelize
+      .sync({ force: true })
+      .then(new CountryController().pull)
+      .then(new ProvinceController().pull)
+      .then(new CityController().pull)
+      .then(new SubdistrictController().pull)
+      .then(new VillageController().pull)
+      .catch(error => {
+        logger.error(error);
+      });
   }
 
   private initializeMiddlewares() {

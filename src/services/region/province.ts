@@ -3,6 +3,7 @@ import Dto from '@dtos/region/province';
 import { HttpException } from '@exceptions/HttpException';
 import Interface from '@interfaces/region/province';
 import { isEmpty } from '@utils/util';
+import Data from '@data/region/provinces.json';
 
 class Service {
   public table = REGION.Province;
@@ -24,7 +25,7 @@ class Service {
   public async create(data: Dto): Promise<Interface> {
     if (isEmpty(data)) throw new HttpException(400, 'Data is empty');
 
-    const find: Interface = await this.table.findOne({ where: { name: data.name } });
+    const find: Interface = await this.table.findOne({ where: { id: data.id } });
     if (find) throw new HttpException(409, `This ${data.name} already exists`);
 
     const create: Interface = await this.table.create({ ...data });
@@ -52,6 +53,10 @@ class Service {
     await this.table.destroy({ where: { id: id } });
 
     return find;
+  }
+
+  public async initialData() {
+    await this.table.bulkCreate(Data);
   }
 }
 
