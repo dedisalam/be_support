@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import Dto from '@dtos/region/province';
 import Interface from '@interfaces/region/province';
 import Service from '@services/region/province';
-import { logger } from '@utils/logger';
 
 class Controller {
   public service = new Service();
@@ -25,48 +23,6 @@ class Controller {
       res.status(200).json({ data: findOne, message: 'findOne' });
     } catch (error) {
       next(error);
-    }
-  };
-
-  public create = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const data: Dto = req.body;
-      const create: Interface = await this.service.create(data);
-
-      res.status(201).json({ data: create, message: 'created' });
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  public update = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const id = Number(req.params.id);
-      const data: Dto = req.body;
-      const update: Interface = await this.service.update(id, data);
-
-      res.status(200).json({ data: update, message: 'updated' });
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  public delete = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const id = Number(req.params.id);
-      const deleteData: Interface = await this.service.delete(id);
-
-      res.status(200).json({ data: deleteData, message: 'deleted' });
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  public pull = async () => {
-    try {
-      await this.service.initialData();
-    } catch (error) {
-      logger.error(error);
     }
   };
 }

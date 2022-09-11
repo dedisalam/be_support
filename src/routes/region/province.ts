@@ -1,8 +1,6 @@
 import { Router } from 'express';
 import Controller from '@controllers/region/province';
-import Dto from '@dtos/region/province';
 import { Routes } from '@interfaces/routes';
-import validationMiddleware from '@middlewares/validation';
 
 class Route implements Routes {
   public path = '/region/province';
@@ -16,9 +14,6 @@ class Route implements Routes {
   private initializeRoutes() {
     this.router.get(`${this.path}s`, this.controller.getAll);
     this.router.get(`${this.path}/:id(\\d+)`, this.controller.getById);
-    this.router.post(`${this.path}`, validationMiddleware(Dto, 'body'), this.controller.create);
-    this.router.put(`${this.path}/:id(\\d+)`, validationMiddleware(Dto, 'body', true), this.controller.update);
-    this.router.delete(`${this.path}/:id(\\d+)`, this.controller.delete);
   }
 }
 
