@@ -3,6 +3,7 @@ import IndexRoute from '@routes/index';
 import AuthRoute from '@routes/admin/auth';
 import UserRoute from '@routes/admin/user';
 import CategoryRoute from '@routes/customer/category';
+import CogsRoute from '@routes/customer/cogs';
 import CustomerRoute from '@routes/customer/customer';
 import PicRoute from '@routes/customer/pic';
 import ProfileRoute from '@routes/customer/profile';
@@ -23,6 +24,7 @@ const app = new App([
   new UserRoute(),
 
   new CategoryRoute(),
+  new CogsRoute(),
   new CustomerRoute(),
   new PicRoute(),
   new ProfileRoute(),

@@ -8,7 +8,7 @@ afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
 });
 
-describe('Testing User', () => {
+describe('Testing Category', () => {
   describe('[GET] /customer/categories', () => {
     it('response findAll category', async () => {
       const route = new Route();

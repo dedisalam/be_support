@@ -1,42 +1,42 @@
 import { Sequelize } from 'sequelize';
 import request from 'supertest';
 import App from '@app';
-import Dto from '@dtos/customer/customer';
-import Route from '@routes/customer/customer';
+import Dto from '@dtos/customer/cogs';
+import Route from '@routes/customer/cogs';
 
 afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
 });
 
-describe('Testing Customer', () => {
-  describe('[GET] /customer/customers', () => {
-    it('response findAll customer', async () => {
+describe('Testing Cogs', () => {
+  describe('[GET] /customer/cogs', () => {
+    it('response findAll cogs', async () => {
       const route = new Route();
       const table = route.controller.service.table;
 
       table.findAll = jest.fn().mockReturnValue([
         {
           id: 1,
-          name: 'testing customer',
+          name: 'testing cogs',
         },
         {
           id: 2,
-          name: 'testing customer 2',
+          name: 'testing cogs 2',
         },
         {
           id: 3,
-          name: 'testing customer 3',
+          name: 'testing cogs 3',
         },
       ]);
 
       (Sequelize as any).authenticate = jest.fn();
       const app = new App([route]);
-      return request(app.getServer()).get(`${route.path}s`).expect(200);
+      return request(app.getServer()).get(`${route.path}`).expect(200);
     });
   });
 
-  describe('[GET] /customer/customer/:id', () => {
-    it('response findOne customer', async () => {
+  describe('[GET] /customer/cogs/:id', () => {
+    it('response findOne cogs', async () => {
       const id = 1;
 
       const route = new Route();
@@ -53,10 +53,10 @@ describe('Testing Customer', () => {
     });
   });
 
-  describe('[POST] /customer/customer', () => {
-    it('response Create customer', async () => {
+  describe('[POST] /customer/cogs', () => {
+    it('response Create cogs', async () => {
       const data: Dto = {
-        name: 'test customer',
+        name: 'test cogs',
       };
 
       const route = new Route();
@@ -74,11 +74,11 @@ describe('Testing Customer', () => {
     });
   });
 
-  describe('[PUT] /customer/customer/:id', () => {
-    it('response Update customer', async () => {
+  describe('[PUT] /customer/cogs/:id', () => {
+    it('response Update cogs', async () => {
       const id = 1;
       const data: Dto = {
-        name: 'test customer',
+        name: 'test cogs',
       };
 
       const route = new Route();
@@ -100,8 +100,8 @@ describe('Testing Customer', () => {
     });
   });
 
-  describe('[DELETE] /customer/customer/:id', () => {
-    it('response Delete customer', async () => {
+  describe('[DELETE] /customer/cogs/:id', () => {
+    it('response Delete cogs', async () => {
       const id = 1;
 
       const route = new Route();
@@ -109,7 +109,7 @@ describe('Testing Customer', () => {
 
       table.findByPk = jest.fn().mockReturnValue({
         id: id,
-        name: 'test customer',
+        name: 'test cogs',
       });
 
       (Sequelize as any).authenticate = jest.fn();
