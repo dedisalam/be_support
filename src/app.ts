@@ -13,6 +13,7 @@ import REGION from '@databases/region';
 import { Routes } from '@interfaces/routes';
 import errorMiddleware from '@middlewares/error';
 import { logger, stream } from '@utils/logger';
+import CUSTOMER from '@databases/customer';
 
 class App {
   public app: express.Application;
@@ -46,6 +47,7 @@ class App {
 
   private connectToDatabase() {
     ADMIN.sequelize.sync({ force: false });
+    CUSTOMER.sequelize.sync({ force: false });
     REGION.sequelize.sync({ force: false });
   }
 
