@@ -1,30 +1,14 @@
-include .env.production.local
-export $(shell sed 's/=.*//' .env.production.local)
 
 
-all: clean \
-build-source \
-build-image \
-push-image \
-run
-
-build-image:
-	docker build -t ${OWNER_APP}/${APP_NAME} .
-
-build-source:
-	npm install
-	npm run build
-
-push-image:
-	docker push ${OWNER_APP}/${APP_NAME}
-	docker rmi -f ${OWNER_APP}/${APP_NAME}
-
-clean:
-	docker compose down || true
-	rm -rf dist
+all: 
+	docker container stop backend-production || true
 	docker system prune -f
+	rm -rf ./dist
+	npm run build
+	docker build -t dedisalam/be_support -f docker-prod.Dockerfile .
+	docker push dedisalam/be_support
+	docker rmi -f dedisalam/be_support
+	docker compose -f docker-prod.yml up -d
 
-run:
-	docker compose up -d
-
-
+dev:
+	docker compose -f docker-dev.yml up -d

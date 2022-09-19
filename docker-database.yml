@@ -1,0 +1,66 @@
+version: '3.7'
+
+services:
+  database-development:
+    image: mongo:4.4.16
+    container_name: database-development
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: j4l4w4v3
+    networks:
+      - development
+    volumes:
+      - database-development:/data/db
+      - database-development-config:/data/configdb
+
+  database-production:
+    image: mongo:4.4.16
+    container_name: database-production
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: j4l4w4v3
+    networks:
+      - production
+    volumes:
+      - database-production:/data/db
+      - database-production-config:/data/configdb
+
+  database-admin:
+    image: mongo-express
+    container_name: database-admin
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: j4l4w4v3
+      ME_CONFIG_MONGODB_SERVER: database-development
+      ME_CONFIG_BASICAUTH_USERNAME: jalawave
+      ME_CONFIG_BASICAUTH_PASSWORD: j4l4w4v3!@#
+      ME_CONFIG_OPTIONS_EDITORTHEME: dracula
+    depends_on:
+      - database-development
+    networks:
+      - development
+
+networks:
+  development:
+    name: development
+
+  production:
+    name: production
+
+volumes:
+  database-development:
+    name: database-development
+
+  database-development-config:
+    name: database-development-config
+
+  database-production:
+    name: database-production
+
+  database-production-config:
+    name: database-production-config

@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  backend-production:
+    image: dedisalam/be_support
+    container_name: backend-production
+    restart: 'unless-stopped'
+    networks:
+      - production
+
+networks:
+  production:
+    name: production

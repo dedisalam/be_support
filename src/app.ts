@@ -5,15 +5,14 @@ import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
+import { connect, set } from 'mongoose';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
-import ADMIN from '@databases/admin';
-import REGION from '@databases/region';
-import { Routes } from '@interfaces/routes';
-import errorMiddleware from '@middlewares/error';
+import { dbConnection } from '@databases';
+import { Routes } from '@interfaces/routes.interface';
+import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
-import CUSTOMER from '@databases/customer';
 
 class App {
   public app: express.Application;
@@ -26,9 +25,9 @@ class App {
     this.port = PORT || 3000;
 
     this.connectToDatabase();
-    this.initializeSwagger();
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
+    this.initializeSwagger();
     this.initializeErrorHandling();
   }
 
@@ -46,16 +45,22 @@ class App {
   }
 
   private connectToDatabase() {
-    ADMIN.sequelize.sync({ force: false });
-    CUSTOMER.sequelize.sync({ force: false });
-    REGION.sequelize.sync({ force: false });
+    if (this.env !== 'production') {
+      set('debug', true);
+    }
+
+    connect(dbConnection.url, dbConnection.options);
   }
 
   private initializeMiddlewares() {
     this.app.use(morgan(LOG_FORMAT, { stream }));
     this.app.use(cors({ origin: ORIGIN, credentials: CREDENTIALS }));
     this.app.use(hpp());
-    this.app.use(helmet({ crossOriginOpenerPolicy: false, originAgentCluster: false }));
+    this.app.use(
+      helmet({
+        contentSecurityPolicy: false,
+      }),
+    );
     this.app.use(compression());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));

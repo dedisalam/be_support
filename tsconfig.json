@@ -21,11 +21,10 @@
     "importHelpers": true,
     "baseUrl": "src",
     "paths": {
-      "@app": ["app.ts"],
+      "@/*": ["*"],
       "@config": ["config"],
       "@controllers/*": ["controllers/*"],
-      "@data/*": ["data/*"],
-      "@databases/*": ["databases/*"],
+      "@databases": ["databases"],
       "@dtos/*": ["dtos/*"],
       "@exceptions/*": ["exceptions/*"],
       "@interfaces/*": ["interfaces/*"],

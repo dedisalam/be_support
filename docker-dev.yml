@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  backend-development:
+    build:
+      context: ./
+      dockerfile: docker-dev.Dockerfile
+    container_name: backend-development
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/app
+    restart: 'unless-stopped'
+    networks:
+      - development
+
+networks:
+  development:
+    name: development
