@@ -21,8 +21,9 @@
     "importHelpers": true,
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"],
+      "@app": ["app.ts"],
       "@config": ["config"],
+      "@controllers": ["controllers"],
       "@controllers/*": ["controllers/*"],
       "@databases": ["databases"],
       "@dtos/*": ["dtos/*"],
@@ -30,6 +31,7 @@
       "@interfaces/*": ["interfaces/*"],
       "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
+      "@routes": ["routes"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"]

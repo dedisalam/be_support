@@ -5,13 +5,13 @@ import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
-import { connect, set } from 'mongoose';
+import mongo from 'mongoose';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
 import { dbConnection } from '@databases';
-import { Routes } from '@interfaces/routes.interface';
-import errorMiddleware from '@middlewares/error.middleware';
+import { Routes } from '@interfaces/route';
+import errorMiddleware from '@middlewares/error';
 import { logger, stream } from '@utils/logger';
 
 class App {
@@ -25,9 +25,9 @@ class App {
     this.port = PORT || 3000;
 
     this.connectToDatabase();
+    this.initializeSwagger();
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
-    this.initializeSwagger();
     this.initializeErrorHandling();
   }
 
@@ -46,10 +46,10 @@ class App {
 
   private connectToDatabase() {
     if (this.env !== 'production') {
-      set('debug', true);
+      mongo.set('debug', true);
     }
 
-    connect(dbConnection.url, dbConnection.options);
+    mongo.connect(dbConnection.url, dbConnection.options);
   }
 
   private initializeMiddlewares() {
